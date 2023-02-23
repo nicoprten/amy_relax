@@ -597,19 +597,161 @@ video {
   }
 }
 
+.mx-10{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.flex{
+  display: flex;
+}
+
+.w-1\/6{
+  width: 16.666667%;
+}
+
 .w-100vw{
   width: 100vw;
+}
+
+.w-max{
+  width: -webkit-max-content;
+  width: max-content;
+}
+
+.list-none{
+  list-style-type: none;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.gap-2{
+  gap: 0.5rem;
+}
+
+.rounded-t{
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.border-2{
+  border-width: 2px;
+}
+
+.border-b-1{
+  border-bottom-width: 1px;
+}
+
+.border-pink{
+  --tw-border-opacity: 1;
+  border-color: rgb(215 187 189 / var(--tw-border-opacity));
+}
+
+.bg-brown{
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 209 195 / var(--tw-bg-opacity));
+}
+
+.bg-pink{
+  --tw-bg-opacity: 1;
+  background-color: rgb(215 187 189 / var(--tw-bg-opacity));
+}
+
+.bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
+}
+
+.p-2{
+  padding: 0.5rem;
+}
+
+.p-4{
+  padding: 1rem;
+}
+
+.pl-4{
+  padding-left: 1rem;
+}
+
+.text-left{
+  text-align: left;
 }
 
 .font-kanit{
   font-family: Kanit, Roboto;
 }
 
+.text-\[14px\]{
+  font-size: 14px;
+}
+
+.text-\[24px\]{
+  font-size: 24px;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-extrabold{
+  font-weight: 800;
+}
+
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(3 3 3 / var(--tw-text-opacity));
+}
+
+.text-green{
+  --tw-text-opacity: 1;
+  color: rgb(70 98 76 / var(--tw-text-opacity));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(237 237 237 / var(--tw-text-opacity));
+}
+
+.duration-200{
+  transition-duration: 200ms;
+}
+
 ::-webkit-scrollbar {
-  width: 1em;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-color: #3092B0;
+  border-radius: 4px;
+  background-color: #46624c;
+}
+
+.hover\:cursor-pointer:hover{
+  cursor: pointer;
+}
+
+.hover\:bg-brown:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 209 195 / var(--tw-bg-opacity));
 }

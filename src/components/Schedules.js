@@ -15,13 +15,13 @@ export const Schedules = () => {
 
 
     return (
-        <div className="flex flex-col gap-2 my-4 mx-10 p-4 bg-brown text-white" id='turnos'>
+        <div className="flex flex-col justify-center gap-2 mb-10 px-10 p-4 bg-brown text-white" id='turnos'>
             <div className='w-max'>
-                <h2 className='text-black text-xl'>TURNOS DISPONIBLES</h2>
+                <h2 className='text-black text-3xl'>TURNOS DISPONIBLES</h2>
                 <p className='text-green text-[14px]'>Seleccione día y horario (dentro de los próximos 7 días).</p>
             </div>
             {schedules.length > 0 && schedules.map((s, i) =>
-                <div className='flex gap-2 text-black border-b-1 border-pink my-2' key={i}>
+                <div className='flex gap-2 text-black font-rubik border-b-1 border-pink my-2' key={i}>
                     <div className='w-1/6 text-left pl-4'>
                         <p>{s.day}</p>
                         <p>{s.date}</p>
