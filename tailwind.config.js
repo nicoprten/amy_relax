@@ -12,15 +12,17 @@ module.exports = {
         rubik: ['Rubik']
       },
       display: ["group-hover"],
+      borderWidth: {
+        1: '1px'
+      }
     },
     colors: {
-      'white': '#FFFFFF',
+      'white': '#ededed',
       'black': '#030303',
-      'gray-dark': '#141414',
       'gray': '#292929',
-      'gray-light': '#9CA3AF',
-      'blue-dark': '#123540',
-      'blue': '#3092B0'
+      'green': '#46624c',
+      'brown': '#d6d1c3',
+      'pink': '#d7bbbd'
     }
   },
   plugins: [],

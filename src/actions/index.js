@@ -1,21 +1,15 @@
-const axios = require('axios');
-
-// import { Amplify, API, Auth } from 'aws-amplify';
-// import awsExports from '../aws-exports';
-// Amplify.configure(awsExports);
-
-export function logIn(email, password){
-    return function(dispatch){
-        return Auth.signIn(email, password)
-        .then(d => dispatch({type: 'LOG_USER', payload: d}))
-        .catch(e => console.log('Error loging ', e));
-    }
-}
-
-export function logOut(){
-    return function(dispatch){
-        return Auth.signOut()
-        .then(d => dispatch({type: 'LOGOUT_USER', payload: d}))
-        .catch(e => console.log('Error loging out ', e));
+export function getSchedules(){
+    let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let dateNow = new Date();
+    let weekDays = Array(7).fill(new Date(dateNow)).map((d, i) => new Date(d.setDate(d.getDate() + 1)));
+    let weekDaysParse = weekDays.map(d => (
+        {
+            day: days[d.getDay()],
+            date: `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`
+        }
+    ));
+    return {
+        type: 'SCHEDULES', 
+        payload: weekDaysParse
     }
 }
