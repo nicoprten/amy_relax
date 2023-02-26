@@ -15,7 +15,7 @@ export const Schedules = () => {
 
 
     return (
-        <div className="flex flex-col justify-center gap-2 mb-10 px-10 p-4 bg-brown text-white" id='turnos'>
+        <div className="flex flex-col justify-center gap-2 mb-10 px-80 p-4 bg-brown text-white" id='turnos'>
             <div className='w-max'>
                 <h2 className='text-black text-3xl'>TURNOS DISPONIBLES</h2>
                 <p className='text-green text-[14px]'>Seleccione día y horario (dentro de los próximos 7 días).</p>

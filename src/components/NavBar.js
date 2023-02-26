@@ -11,7 +11,7 @@ export const NavBar = () => {
     }
 
   return (
-    <div className='flex justify-between bg-brown py-4 px-10 h-[20vh]'>
+    <div className='flex justify-between bg-brown py-4 px-80 h-[20vh]'>
         <p onClick={(e) => scrollLink(e)}>LOGO</p>
         <ul className='flex gap-20 list-none text-green'>
             <li><button className='border-b-2 border-brown hover:border-green duration-200' onClick={(e) => scrollLink(e)}>SOBRE MI</button></li>
