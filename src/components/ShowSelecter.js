@@ -1,10 +1,34 @@
 import React from 'react'
+import { useState } from 'react';
 
-import { Schedules } from './Schedules';
+import DatePicker from "react-datepicker";
+import { registerLocale } from  "react-datepicker";
+import es from 'date-fns/locale/es';
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export const ShowSelecter = ({reservation, setReservation}) => {
+    let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
     console.log(reservation)
+
+    registerLocale('es', es)
+    let startDay = new Date();
+    let lastDay = new Date(new Date().setMonth(new Date().getMonth() + 1));
+
+    function handleChangeDay(date){
+        console.log(date.getDate())
+        console.log((days[date.getDay()]))
+        if(date.getDay() !== 3 && date.getDay() !== 4 && date.getDay() !== 5){
+            let nameDay = days[date.getDay()];
+            let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+            let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            setReservation({...reservation, dia: `${nameDay} ${day}/${month}/${date.getFullYear()}`})
+        }else{
+            console.log('no puedes seleccionar ese dia')
+            setReservation({...reservation, dia:'default'})
+        }
+    }
 
   return (
     <div className='my-8 select-none'>
@@ -41,18 +65,20 @@ export const ShowSelecter = ({reservation, setReservation}) => {
         {(reservation.duracion !== 'default' && reservation.dia === 'default') &&
             <div>
                 <p className='text-center text-xl text-gray my-6'>Seleccione el día</p>
-                <Schedules />
+                <DatePicker selected={startDay} onChange={(date) => handleChangeDay(date)} locale='es' dateFormat='dd/MM/yyyy' minDate={startDay} maxDate={lastDay} showIcon={true}/>
                 <button className='text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, duracion: 'default'})}>Volver</button>
             </div>
         }
         {(reservation.dia !== 'default' && reservation.horario === 'default') &&
             <div>
                 <p className='text-center text-xl text-gray my-6'>Seleccione el horario</p>
+                <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, dia: 'default'})}>Volver</button>
             </div>
         }
         {(reservation.horario !== 'default' && reservation.cliente === 'default') &&
             <div>
                 <p className='text-center text-xl text-gray my-6'>Completa con sus datos por favor.</p>
+                <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, horario: 'default'})}>Volver</button>
             </div>
         }
     </div>
