@@ -1,33 +1,57 @@
-import React from 'react'
+import React from 'react';
 import { useState } from 'react';
 
 import DatePicker from "react-datepicker";
 import { registerLocale } from  "react-datepicker";
 import es from 'date-fns/locale/es';
-
 import "react-datepicker/dist/react-datepicker.css";
+
+import { db } from './../firebase';
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+
+import { FormReservation } from './FormReservation';
 
 export const ShowSelecter = ({reservation, setReservation}) => {
     let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    
+    let horariosLM = ['08:00hs', '08:30hs', '09:00hs', '09:30hs', '10:00hs', '10:30hs', '11:00hs'];
 
-    console.log(reservation)
+    const [horarios, setHorarios] = useState([]);
+
+    async function handleAvailability(nombreDia, numMes, numDia){
+        let horarios = [];
+        console.log(nombreDia, numMes, numDia)
+        const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nombreDia), where('numDia', '==', numDia), where('numMes', '==', numMes));
+        const querySnapshot = await getDocs(q);
+        if(querySnapshot.empty){
+            console.log('no existe ese documento con esa fecha')
+            const docRef = await addDoc(collection(db, "Disponibilidad"), {
+                nombreDia,
+                numDia,
+                numMes,
+                horarios: horariosLM
+              });
+            handleAvailability(nombreDia, numMes, numDia)
+        }else{
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, " => ", doc.data().horarios);
+                horarios.push(doc.data().horarios);
+            });
+        }
+        setHorarios(horarios[0])
+    }
 
     registerLocale('es', es)
     let startDay = new Date();
     let lastDay = new Date(new Date().setMonth(new Date().getMonth() + 1));
 
-    function handleChangeDay(date){
-        console.log(date.getDate())
-        console.log((days[date.getDay()]))
-        if(date.getDay() !== 3 && date.getDay() !== 4 && date.getDay() !== 5){
-            let nameDay = days[date.getDay()];
-            let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
-            let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-            setReservation({...reservation, dia: `${nameDay} ${day}/${month}/${date.getFullYear()}`})
-        }else{
-            console.log('no puedes seleccionar ese dia')
-            setReservation({...reservation, dia:'default'})
-        }
+    async function handleChangeDay(date){
+        let nameDay = days[date.getDay()];
+        let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1).toString();
+        let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        setReservation({...reservation, dia: `${nameDay} ${day}/${month}/${date.getFullYear()}`});
+        setHorarios([])
+        handleAvailability(nameDay, month, day)
     }
 
   return (
@@ -72,13 +96,17 @@ export const ShowSelecter = ({reservation, setReservation}) => {
         {(reservation.dia !== 'default' && reservation.horario === 'default') &&
             <div>
                 <p className='text-center text-xl text-gray my-6'>Seleccione el horario</p>
+                <div className='flex flex-wrap justify-center gap-4 my-20'>
+                    {horarios?.length > 0 && horarios.map((h, i) => 
+                        <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, horario: e.target.innerHTML})} key={i}>{h}</button>
+                    )}
+                </div>
                 <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, dia: 'default'})}>Volver</button>
             </div>
         }
         {(reservation.horario !== 'default' && reservation.cliente === 'default') &&
             <div>
-                <p className='text-center text-xl text-gray my-6'>Completa con sus datos por favor.</p>
-                <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, horario: 'default'})}>Volver</button>
+                <FormReservation reservation={reservation} setReservation={setReservation}/>
             </div>
         }
     </div>

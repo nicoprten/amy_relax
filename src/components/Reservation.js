@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import { ShowSelecter } from './ShowSelecter';
 
+import { db } from './../firebase.js';
+
 export const Reservation = () => {
 
     const [reservation, setReservation] = useState({
@@ -15,7 +17,7 @@ export const Reservation = () => {
 
   return (
     <div className='px-80'>
-        <h2 className='text-3xl text-center my-4 p-2'>RESERVA TU PRÓXIMO MASAJE</h2>
+        <h2 className='text-3xl text-center my-10 p-2'>RESERVA TU PRÓXIMO MASAJE</h2>
         <ul className='flex gap-20 justify-center my-4'>
             <li className={"w-1/4 border-2 border-black p-2 text-left pl-8 " + (reservation.masaje !== 'default' && 'bg-black text-white')}>MASAJE</li>
             <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.duracion !== 'default' && 'bg-black text-white')}>DURACIÓN</li>

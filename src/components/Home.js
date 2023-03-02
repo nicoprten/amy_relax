@@ -2,7 +2,6 @@ import { NavBar } from "./NavBar";
 import { AboutMe } from "./AboutMe";
 import { Reservation } from "./Reservation";
 import { Information } from "./Information";
-import { Footer } from "./Footer.js";
 
 export default function Home(){
 
@@ -12,7 +11,6 @@ export default function Home(){
             <AboutMe />
             <Information />
             <Reservation />
-            <Footer />
         </div>
     )
 }
