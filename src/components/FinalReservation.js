@@ -5,6 +5,8 @@ import { getAuth, signOut } from "firebase/auth";
 
 import { Phone, Envelope } from 'phosphor-react';
 
+import { FormReservation } from './FormReservation';
+
 export const FinalReservation = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -26,8 +28,9 @@ export const FinalReservation = () => {
     }
 
   return (
-    <div className="relative">
-        <div className='flex items-center justify-between w-[60vw] mx-auto'>
+    <div className="relative w-[70vw] mx-auto">
+        {/* NAVBAR */}
+        <div className='flex items-center justify-between'>
             <div>
                 <button onClick={() => navigate('/')}>Amalia Masajes</button>
             </div>
@@ -36,15 +39,20 @@ export const FinalReservation = () => {
                 <p className='text-sm'>{user.name}</p>
             </div>
         </div>
-        <div className='flex flex-col items-center gap-4 absolute top-[20px] right-[20px] bg-white0 p-2 rounded'>
+        {/* MENU PROFILE */}
+        <div className='flex flex-col items-center gap-4 absolute top-[60px] right-[-5px] bg-white0 p-2 rounded shadow-xl'>
             <img className='w-[75px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user.name}`} />
-            <div className='flex flex-col items-left bg-green text-white0 rounded p-2'>
+            <div className='flex flex-col items-center border-b-1 border-green pb-2'>
+                <p className='text-green text-xl'>{user.name}</p>
+                <p className='text-xs text-gray'>Te uniste el {user.creado.split('-')[0]}/{user.creado.split('-')[1]} de {user.creado.split('-')[2]}</p>
+            </div>
+            <div className='flex flex-col items-left text-green rounded p-2'>
                 <div className='flex gap-2 items-center'>
-                    <Envelope size={28}/>
+                    {/* <Envelope size={28}/> */}
                     <p className='text-sm'>{user.email}</p>
                 </div>
                 <div className='flex gap-2 items-center'>
-                    <Phone size={28}/>
+                    {/* <Phone size={28}/> */}
                     <p className='text-sm'>{user.phone}</p>
                 </div>
             </div>
@@ -53,6 +61,7 @@ export const FinalReservation = () => {
                 <button className='border-1 border-black rounded p-2 text-sm hover:bg-green hover:text-white duration-200' onClick={() => handleLogOut()}>Cerrar sesión</button>
             </div>
         </div>
+        <FormReservation />
     </div>
   )
 }

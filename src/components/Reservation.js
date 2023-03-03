@@ -23,7 +23,6 @@ export const Reservation = () => {
             <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.duracion !== 'default' && 'bg-black text-white')}>DURACIÓN</li>
             <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.dia !== 'default' && 'bg-black text-white')}>DÍA</li>
             <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.horario !== 'default' && 'bg-black text-white')}>HORARIO</li>
-            <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.cliente !== 'default' && 'bg-black text-white')}>DATOS</li>
         </ul>
         {reservation.massage !== 'default' &&
             // Object.values(reservation).map(value => (value !== 'default') && <p className='border-b-1 border-black'>{value}</p>)
