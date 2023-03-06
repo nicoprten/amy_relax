@@ -6,7 +6,6 @@ import { getSchedules, testing } from './../actions/index';
 export const Schedules = () => {
     const dispatch = useDispatch();
     let schedules = useSelector(state => state.schedules);
-    // console.log(schedules)
 
     React.useEffect(() =>{
         dispatch(getSchedules());

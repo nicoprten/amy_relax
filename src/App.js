@@ -12,7 +12,7 @@ import 'tailwindcss/tailwind.css';
 export default function App(){
 
     return(
-        <div className='w-100vw font-kanit bg-white'>
+        <div className='font-kanit bg-white'>
             <Routes>
                 <Route path={'/'} element={<Home />} />
                 <Route path={'/datos_reserva'} element={<FinalReservation />} />
