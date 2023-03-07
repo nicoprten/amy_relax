@@ -1,5 +1,6 @@
 const initialState = {
-    schedules: []
+    schedules: [],
+    user: {}
 }
 
 export default function rootReducer(state = initialState, action){
@@ -8,6 +9,11 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 schedules: action.payload
+            };
+        case 'LOG_IN':
+            return{
+                ...state,
+                user: action.payload
             };
         default:
             return state;

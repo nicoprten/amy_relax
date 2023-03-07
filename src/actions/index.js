@@ -1,3 +1,6 @@
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { convertDate } from "./../methods/index.js";
+
 export function getSchedules(){
     let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     let dateNow = new Date();
@@ -11,5 +14,26 @@ export function getSchedules(){
     return {
         type: 'SCHEDULES', 
         payload: weekDaysParse
+    }
+}
+
+export function logIn(){
+    return async function (dispatch){
+        if(JSON.parse(localStorage.getItem('user')) === null){
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        return await signInWithPopup(auth, provider)
+        .then((r) =>{
+            const credential = GoogleAuthProvider.credentialFromResult(r);
+            const token = credential.accessToken;
+            const userGoogle = r.user;
+            let userCreated = convertDate(userGoogle.metadata.createdAt);
+            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated};
+            localStorage.setItem('user', JSON.stringify(user));
+            dispatch({type:'LOG_IN', payload: user});
+        }).catch((error) => {
+            console.log(error)
+        });
+        }
     }
 }

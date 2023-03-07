@@ -7,6 +7,8 @@ import { ShowSelecter } from './ShowSelecter';
 import { db } from './../firebase.js';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
+import { convertDate } from './../methods/index.js';
+
 export const Reservation = () => {
 
     const [reservation, setReservation] = useState({
@@ -27,17 +29,6 @@ export const Reservation = () => {
         image: ''
     });
 
-    function convertDate(date){
-        let newDate = new Date(+date);
-        console.log(newDate);
-        let year = newDate.getFullYear();
-        console.log(year);
-        let month = ("0" + (newDate.getMonth() + 1)).slice(-2);
-        let day = ("0" + newDate.getDate()).slice(-2);
-        let dateConverted = `${day}-${month}-${year}`;
-        return dateConverted;
-    }
-
     function handleReservation(){
         if(JSON.parse(localStorage.getItem('user')) === null){
             const auth = getAuth();
@@ -54,7 +45,7 @@ export const Reservation = () => {
                 setUser({...user, email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated});
                 localStorage.setItem('user', JSON.stringify({...user, email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated}));
                 navigate('/datos_reserva');
-            }).catch((error) => {
+    }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;

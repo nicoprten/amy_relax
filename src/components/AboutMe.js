@@ -7,7 +7,7 @@ export const AboutMe = () => {
   return (
     <div className='w-[70vw] mx-auto my-10 flex justify-between sm:flex-wrap-reverse' id='sobre-mi'>
         <div className='flex flex-col xl:w-3/4 bg-brown rounded xl:pr-20 border-1 border-gray xl:bg-white xl:border-none'>
-          <p className='text-sm my-2 bg-green w-max p-2 rounded-t text-brown'>MASAJISTA | TERAPEUTA HOLÍSTICA | LOGOPEDA</p>
+          <p className='text-sm my-2 bg-green w-max p-2 rounded-t text-white'>MASAJISTA | TERAPEUTA HOLÍSTICA | LOGOPEDA</p>
           <h2 className='xl:text-5xl text-2xl text-green font-extrabold leading-relaxed tracking-wide'>María Amalia Alvarez</h2>
           <p className='text-lg mt-[30px]'>Especialista en las técnicas del masaje terapéutico y de las diferentes técnicas de masaje deportivo, según los distintos tipos de actividades físicas.</p>
           <button className='flex gap-4 items-center w-max mt-4 py-2 px-4 bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white duration-200'>
