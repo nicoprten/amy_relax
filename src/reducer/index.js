@@ -1,6 +1,6 @@
 const initialState = {
     schedules: [],
-    user: {}
+    user: JSON.parse(localStorage.getItem('user'))
 }
 
 export default function rootReducer(state = initialState, action){
@@ -14,6 +14,11 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 user: action.payload
+            };
+        case 'LOG_OUT':
+            return{
+                ...state,
+                user: null
             };
         default:
             return state;
