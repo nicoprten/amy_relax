@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { convertDate } from "./../methods/index.js";
 
 export function getSchedules(){
@@ -28,12 +28,26 @@ export function logIn(){
             const token = credential.accessToken;
             const userGoogle = r.user;
             let userCreated = convertDate(userGoogle.metadata.createdAt);
-            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated};
+            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated, id: userGoogle.uid};
             localStorage.setItem('user', JSON.stringify(user));
             dispatch({type:'LOG_IN', payload: user});
         }).catch((error) => {
             console.log(error)
         });
         }
+    }
+}
+
+export function logOut(){
+    return async function (dispatch){
+        const auth = getAuth();
+        return await signOut(auth).then(() => {
+            // Sign-out successful.
+            localStorage.removeItem('user');
+            dispatch({type:'LOG_OUT'});
+        }).catch((error) => {
+            // An error happened.
+            console.log(error);
+        });
     }
 }

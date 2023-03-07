@@ -1,15 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { ShowSelecter } from './ShowSelecter';
 
-import { db } from './../firebase.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { db } from './../firebase.js';
+// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-import { convertDate } from './../methods/index.js';
+// import { convertDate } from './../methods/index.js';
+import { logIn } from './../actions/index.js';
 
 export const Reservation = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [reservation, setReservation] = useState({
         masaje: "default",
@@ -20,44 +25,10 @@ export const Reservation = () => {
     });
 
     // LOGICA PARA FINALIZAR LA RESERVA CUANDO LLEGA A HORARIOS
-    const navigate = useNavigate();
-
-    const [user, setUser] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        image: ''
-    });
 
     function handleReservation(){
-        if(JSON.parse(localStorage.getItem('user')) === null){
-            const auth = getAuth();
-            const provider = new GoogleAuthProvider();
-            signInWithPopup(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const userGoogle = result.user;
-                console.log(userGoogle.metadata.createdAt)
-                let userCreated = convertDate(userGoogle.metadata.createdAt);
-                setUser({...user, email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated});
-                localStorage.setItem('user', JSON.stringify({...user, email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated}));
-                navigate('/datos_reserva');
-    }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-            });
-        }else{
-            navigate('/datos_reserva');
-        }
+        dispatch(logIn());
+        navigate('/datos_reserva');
     }
 
   return (

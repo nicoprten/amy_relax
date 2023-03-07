@@ -1,20 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-export const Comments = () => {
+import { getComments } from '../methods/index.js';
 
-    const [comment, setComment] = useState('');
-    const [user, setUser] = useState({});
+export const Comments = ({ comment }) => {
+
+    const [comments, setComments] = useState([]);
 
     useEffect(() =>{
-        setUser(JSON.parse(localStorage.getItem('user')));
-    }, [])
-    console.log(comment)
-    console.log(user)
+        if(comment === ''){
+            showComments()
+        }
+    }, [comment])
+    
+    async function showComments(){
+        setComments(await getComments());
+    }
+
     return (
-        <div className='flex flex-col gap-2 items-center w-full bg-gray0'>
-            <h2 className='text-3xl tracking-wide'>LEAVE A COMMENT</h2>
-            <p>Leave us your opinion</p>
-            <input className='w-2/5 p-2' type='text' placeholder='Write a comment' onChange={(e) => setComment(e.target.value)}></input>
+        <div className='flex flex-col gap-4 items-center w-[40vw] bg-gray0 my-14'>
+            {comments.length > 0 ?
+                comments.map((c, i) => 
+                    <div className='flex w-full p-2' key={i}>
+                        <img className='rounded-full' src={c.userImg} alt={`profile picture of ${c.userName}`} />
+                        <div className='flex flex-col ml-4 gap-4'>
+                            <div className='flex gap-2 items-center text-sm'>
+                                <p className='text-black bg-brown p-2 rounded'>{c.userName}</p>
+                                <p className='text-green'>{c.date}</p>
+                            </div>
+                            <p className='w-max p-2 border-b-1 border-gray'>{c.comment}</p>
+                        </div>
+                    </div>
+                )
+            :
+                <p>No comments yet...</p>
+            }
         </div>
     )
 }

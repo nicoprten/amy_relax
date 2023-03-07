@@ -1,11 +1,9 @@
 import { useState } from 'react';
 
+export const FormReservation = () => {
 
-
-
-export const FormReservation = ({ user }) => {
-
-
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+    
   return (
     <div className='w-[70vw] mx-auto'>
         <p className='text-2xl text my-4 font-black'>Chequeá tus datos y confirma la reserva.</p>
@@ -16,7 +14,7 @@ export const FormReservation = ({ user }) => {
                     <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-sm text-gray' htmlFor="name">
                         Nombre*
                     </label>
-                    <input className='p-2 focus:outline-0' id='name' type="text" onChange={(e) => setUser({...user, name: e.target.value})} value={user.name}></input>
+                    <input className='p-2 focus:outline-0' id='name' type="text" onChange={(e) => setUser({...user, name: e.target.value})} value={user?.name}></input>
                 </div>
                 <div className='relative border-1 border-gray p-2 m-2'>
                     <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-sm text-gray' htmlFor="phone">
@@ -28,7 +26,7 @@ export const FormReservation = ({ user }) => {
                     <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-sm text-gray' htmlFor="email">
                         Email*
                     </label>
-                    <input className='p-2 focus:outline-0' id='email' type="text" onChange={(e) => setUser({...user, email: e.target.value})} value={user.email}></input>
+                    <input className='p-2 focus:outline-0' id='email' type="text" onChange={(e) => setUser({...user, email: e.target.value})} value={user?.email}></input>
                 </div>
             </div>
         </div>

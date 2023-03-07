@@ -2,7 +2,7 @@ import { NavBar } from "./NavBar";
 import { AboutMe } from "./AboutMe";
 import { Reservation } from "./Reservation";
 import { Information } from "./Information";
-import { Comments } from "./Comments";
+import { CommentPost } from "./CommentPost";
 
 export default function Home(){
 
@@ -11,7 +11,7 @@ export default function Home(){
             <NavBar />
             <AboutMe />
             <Information />
-            <Comments />
+            <CommentPost />
             <Reservation />
         </div>
     )
