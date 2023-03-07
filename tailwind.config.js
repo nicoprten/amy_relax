@@ -23,8 +23,14 @@ module.exports = {
       'gray': '#D3D3D3',
       'gray0': '#F4F6F4',
       'green': '#46624c',
+      'green0': '#5A7D7C',
       'brown': '#d6d1c3',
-      'pink': '#d7bbbd'
+      'brown-dark': '#8C5E58',
+      'pink': '#d7bbbd',
+      'violet': '#7A6174',
+      'violet-light': '#8C7284',
+      'blue': '#181E23',
+      'red': '#C16E70'
     }
   },
   plugins: [],
