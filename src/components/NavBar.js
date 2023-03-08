@@ -13,7 +13,7 @@ export const NavBar = () => {
 
   return (
     <div className='fixed z-10 w-full top-0 h-[4em] flex justify-between bg-blue p-4 px-14 items-center shadow-lg border-b-1 border-brown'>
-        <p className='p-2' onClick={(e) => scrollLink(e)}>LOGO</p>
+        <p className='p-2 text-white' onClick={(e) => scrollLink(e)}>LOGO</p>
         <ul className='flex gap-10 list-none text-brown'>
             <li><button className='border-b-2 border-blue hover:border-brown duration-200' onClick={(e) => scrollLink(e)}>SOBRE MI</button></li>
             <li><button className='border-b-2 border-blue hover:border-brown duration-200' onClick={(e) => scrollLink(e)}>MASAJES</button></li>

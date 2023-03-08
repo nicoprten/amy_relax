@@ -14,6 +14,9 @@ module.exports = {
       display: ["group-hover"],
       borderWidth: {
         1: '1px'
+      },
+      backgroundImage: {
+        // 'violet-card': "url('./img/bg-card-violet.svg')",
       }
     },
     colors: {
@@ -27,8 +30,8 @@ module.exports = {
       'brown': '#d6d1c3',
       'brown-dark': '#8C5E58',
       'pink': '#d7bbbd',
-      'violet': '#7A6174',
-      'violet-light': '#8C7284',
+      'violet': '#703D57',
+      'violet-light': '#B59DA4',
       'blue': '#181E23',
       'red': '#C16E70'
     }

@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, addDoc, getDocs } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from './../firebase.js';
 
 // Parse date (miliseconds for example) to dd/mm/yyyy
@@ -13,7 +13,17 @@ export function convertDate(date){
     return dateConverted;
 }
 
+// Order array of objects by date dd/mm/yyyy
+// export function sortByDate(dates){
+//     dates.sort(function(a, b){
+//         var aa = a.split('/').reverse().join(),
+//             bb = b.split('/').reverse().join();
+//         return aa < bb ? -1 : (aa > bb ? 1 : 0);
+//     });
+// }
+
 export async function postComment(user, comment){
+    console.log(user)
     const dbRef = await addDoc(collection(db, "Comentarios"), {
         userId: user.id,
         comment,
@@ -26,7 +36,8 @@ export async function postComment(user, comment){
 
 export async function getComments(){
     let comments = [];
-    const querySnapshot = await getDocs(collection(db, "Comentarios"));
+    const q = query(collection(db, 'Comentarios'), orderBy('date', 'desc'), limit(4));
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());

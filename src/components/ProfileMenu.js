@@ -20,12 +20,12 @@ export const ProfileMenu = ({ user }) => {
         <div className='relative'>
             {/* NAVBAR */}
             <div className={showProfileCard ? 'w-max flex gap-2 justify-items-end items-center p-2 rounded-t text-blue border-1 border-brown border-b-0 bg-brown hover:cursor-pointer' : 'w-max flex gap-2 justify-items-end items-center p-2 rounded-t text-brown border-1 border-brown border-b-0 hover:cursor-pointer hover:bg-brown hover:text-blue duration-200'} onClick={() => setShowProfileCard(!showProfileCard)}>
-                <img className='w-[40px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user?.name}`} />
+                <img className='w-[40px] rounded-full' src={user ? user.image : ''} alt={`Foto de perfil de ${user?.name}`} />
                 <p className='text-sm'>{user?.name}</p>
             </div>
             {/* MENU PROFILE */}
             {showProfileCard &&
-                <div className='flex flex-col items-center gap-4 absolute top-[60px] right-[-25px] bg-brown p-2 rounded-b shadow-xl border-x-1 border-b-1 border-brown'>
+                <div className='flex flex-col items-center gap-4 absolute top-[60px] right-0 bg-brown p-2 rounded-b shadow-xl border-x-1 border-b-1 border-brown'>
                     <img className='w-[75px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user?.name}`} />
                     <div className='flex flex-col items-center border-b-1 border-blue pb-2'>
                         <p className='text-brown-dark text-xl'>{user?.name}</p>
