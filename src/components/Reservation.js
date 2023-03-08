@@ -32,14 +32,16 @@ export const Reservation = () => {
     }
 
   return (
-    <div className='w-[60vw] mx-auto'>
-        <h2 className='text-3xl text-center my-10 p-2'>RESERVA TU PRÓXIMO MASAJE</h2>
-        <ul className='flex xl:gap-20 justify-center my-4'>
-            <li className={"w-1/4 border-2 border-black p-2 text-left pl-8 " + (reservation.masaje !== 'default' && 'bg-black text-white')}>MASAJE</li>
-            <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.duracion !== 'default' && 'bg-black text-white')}>DURACIÓN</li>
-            <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.dia !== 'default' && 'bg-black text-white')}>DÍA</li>
-            <li className={'w-1/4 border-2 border-black p-2 text-left pl-8 ' + (reservation.horario !== 'default' && 'bg-black text-white')}>HORARIO</li>
-        </ul>
+    <div className='flex flex-col items-center bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-card-violet.svg)'}}>
+        <div className='w-[60vw]'>
+            <h2 className='text-3xl text-center my-10 p-2 bg-violet-light rounded'>RESERVA TU PRÓXIMO MASAJE</h2>
+            <ul className='flex w-full xl:gap-20 justify-center my-4 text-blue'>
+                <li className={"w-1/4 border-2 border-blue p-2 " + (reservation.masaje !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>MASAJE</li>
+                <li className={'w-1/4 border-2 border-blue p-2 ' + (reservation.duracion !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>DURACIÓN</li>
+                <li className={'w-1/4 border-2 border-blue p-2 ' + (reservation.dia !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>DÍA</li>
+                <li className={'w-1/4 border-2 border-blue p-2 ' + (reservation.horario !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>HORARIO</li>
+            </ul>
+        </div>
         {reservation.masaje !== 'default' &&
             // Object.values(reservation).map(value => (value !== 'default') && <p className='border-b-1 border-black'>{value}</p>)
             <div className='bg-black text-white p-2 rounded w-[50%]'>
