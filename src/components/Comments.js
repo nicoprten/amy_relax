@@ -27,12 +27,12 @@ export const Comments = ({ comment }) => {
                     {comments.filter((c, i) => i < totalComments).map((c, i) => 
                         <div className='flex w-full p-2' key={i}>
                             <img className='rounded-full w-[50px] h-[50px]' src={c.userImg ? c.userImg : ''} alt={`profile picture of ${c.userName}`} />
-                            <div className='flex flex-col ml-4 gap-4'>
-                                <div className='flex gap-2 items-center text-sm'>
-                                    <p className='text-blue bg-brown p-2 rounded'>{c.userName}</p>
-                                    <p className='text-violet'>{c.date}</p>
+                            <div className='flex flex-col ml-4 gap-4 w-full'>
+                                <div className='flex gap-2 items-center text-sm justify-between'>
+                                    <p className='text-blue bg-violet-light p-2'>{c.userName}</p>
+                                    <p className='text-brown-dark italic text-xs'>{c.date}</p>
                                 </div>
-                                <p className='w-max p-2 border-b-1 border-gray text-blue text-sm'>{c.comment}</p>
+                                <p className='p-2 border-b-1 border-gray text-blue text-sm'>{c.comment}</p>
                             </div>
                         </div>
                     )}

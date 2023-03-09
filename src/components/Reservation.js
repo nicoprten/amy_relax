@@ -34,7 +34,7 @@ export const Reservation = () => {
   return (
     <div className='flex flex-col items-center bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-card-violet.svg)'}}>
         <div className='w-[60vw]'>
-            <h2 className='text-3xl text-center my-10 p-2 bg-violet-light rounded'>RESERVA TU PRÓXIMO MASAJE</h2>
+            <h2 className='text-white0 text-3xl text-center my-10'>RESERVA TU PRÓXIMO MASAJE</h2>
             <ul className='flex w-full xl:gap-20 justify-center my-4 text-blue'>
                 <li className={"w-1/4 border-2 border-blue p-2 " + (reservation.masaje !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>MASAJE</li>
                 <li className={'w-1/4 border-2 border-blue p-2 ' + (reservation.duracion !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>DURACIÓN</li>

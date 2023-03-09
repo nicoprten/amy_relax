@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { postComment } from '../methods/index.js';
 import { logIn } from './../actions/index.js';
@@ -9,24 +9,25 @@ import { Comments } from './Comments.js';
 export const CommentPost = () => {
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     const [comment, setComment] = useState('');
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
     const [error, setError] = useState(false);
 
     useEffect(() =>{
-        setUser(JSON.parse(localStorage.getItem('user')));
+        // setUser(JSON.parse(localStorage.getItem('user')));
     }, [])
     
     async function handleComment(user, comment){
         console.log(user)
+        setComment('');
         if(typeof user === 'object'){
             await postComment(user, comment);
             setError(false)
         }else{
             setError(true)
         }
-        setComment('');
     }
 
     return (
