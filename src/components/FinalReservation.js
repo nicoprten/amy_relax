@@ -15,10 +15,9 @@ export const FinalReservation = () => {
     
 
   return (
-    <div className="relative mx-auto">
+    <div className="relative mx-auto py-20">
         {user ?
             <>
-                <ProfileMenu user={user}/>
                 <FormReservation />
             </>
         :

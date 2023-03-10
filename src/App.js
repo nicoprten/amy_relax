@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import { FinalReservation } from './components/FinalReservation';
 import { Footer } from "./components/Footer.js";
+import { NavBar } from "./components/NavBar.js";
 
 import 'tailwindcss/tailwind.css';
 
@@ -13,6 +14,7 @@ export default function App(){
 
     return(
         <div className='font-kanit bg-white'>
+            <NavBar />
             <Routes>
                 <Route path={'/'} element={<Home />} />
                 <Route path={'/datos_reserva'} element={<FinalReservation />} />

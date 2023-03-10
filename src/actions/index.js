@@ -51,3 +51,7 @@ export function logOut(){
         });
     }
 }
+
+export function setReservation(reservation){
+    return {type: 'SET_RESERVATION', payload: reservation};
+}
