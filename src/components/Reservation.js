@@ -43,7 +43,6 @@ export const Reservation = () => {
             </ul>
         </div>
         {reservation.massage_type !== 'default' &&
-            // Object.values(reservation).map(value => (value !== 'default') && <p className='border-b-1 border-black'>{value}</p>)
             <div className='bg-black text-white p-2 rounded w-[50%]'>
                 <p className='bg-green rounded-t text-center'>RESUMEN</p>
                 <div className='flex flex-col gap-2 my-2'>
