@@ -23,7 +23,6 @@ export function convertDate(date){
 // }
 
 export async function postComment(user, comment){
-    console.log(user)
     const dbRef = await addDoc(collection(db, "Comentarios"), {
         userId: user.id,
         comment,
@@ -39,8 +38,6 @@ export async function getComments(){
     const q = query(collection(db, 'Comentarios'), orderBy('date', 'desc'), limit(4));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
         comments.push(doc.data());
     });
     return comments;

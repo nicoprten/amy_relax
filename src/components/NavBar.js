@@ -9,8 +9,7 @@ export const NavBar = () => {
 
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.user);
-  console.log(currentUser)
-
+  
   return (
     <div className='fixed z-10 w-full top-0 h-[4em] flex justify-between bg-black p-4 px-14 items-center shadow-lg text-white0'>
         <p className='p-2' onClick={(e) => scrollLink(e)}>LOGO</p>
