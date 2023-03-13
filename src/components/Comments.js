@@ -11,9 +11,8 @@ export const Comments = ({ comment }) => {
 
     useEffect(() =>{
         if(comment === ''){
-            showComments()
+            showComments();
         }
-        console.log(comments)
     }, [comment])
     
     async function showComments(){

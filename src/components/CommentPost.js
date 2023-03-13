@@ -16,7 +16,7 @@ export const CommentPost = () => {
     const [error, setError] = useState(false);
 
     useEffect(() =>{
-        console.log(user)
+        // When the user see the error message and log in, the message is gone.
         setError(false);
     }, [user])
     
