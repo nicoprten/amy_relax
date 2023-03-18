@@ -54,9 +54,9 @@ export const ShowSelecter = ({reservation, setReservation}) => {
     }
 
   return (
-    <div className='my-8 select-none'>
+    <>
         {reservation.massage_type === 'default' &&
-            <div>
+            <div className='my-8 select-none'>
                 <p className='text-center text-xl text-black my-4'>Seleccione el tipo de masaje</p>
                 <div className='flex flex-wrap justify-center gap-4 my-4'>
                     <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Sesion de Reiki</button>
@@ -108,6 +108,6 @@ export const ShowSelecter = ({reservation, setReservation}) => {
                 }
             </div>
         }
-    </div>
+    </>
   )
 }

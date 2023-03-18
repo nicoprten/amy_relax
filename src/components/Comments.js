@@ -25,7 +25,7 @@ export const Comments = ({ comment }) => {
                 <>
                     {comments.filter((c, i) => i < totalComments).map((c, i) => 
                         <div className='flex w-full p-2' key={i}>
-                            <img className='rounded-full w-[50px] h-[50px]' src={c.userImg ? c.userImg : ''} alt={`profile picture of ${c.userName}`} />
+                            <img className='rounded-full w-[50px] h-[50px]' src={c.userImg ? c.userImg : ''} alt={`profile picture of ${c.userName}`} referrerPolicy='no-referrer'/>
                             <div className='flex flex-col ml-4 gap-4 w-full'>
                                 <div className='flex gap-2 items-center text-sm justify-between'>
                                     <p className='text-blue bg-violet-light p-2'>{c.userName}</p>
@@ -43,7 +43,7 @@ export const Comments = ({ comment }) => {
                     </button>}
                 </>
             :
-                <p>No comments yet...</p>
+            <p>No comments yet...</p>
             }
         </div>
     )
