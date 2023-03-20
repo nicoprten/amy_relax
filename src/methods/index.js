@@ -42,3 +42,13 @@ export async function getComments(){
     });
     return comments;
 }
+
+export async function getMassages(){
+    let massages = [];
+    const q = query(collection(db, 'Masajes'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        massages.push(doc.data());
+    });
+    return massages;
+} 

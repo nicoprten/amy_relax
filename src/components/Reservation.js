@@ -52,6 +52,7 @@ export const Reservation = () => {
                 </li>
             </ul>
         </div>
+        {/* RESUME BOOK MASSAGE */}
         {reservation.massage_type !== 'default' &&
             <div className='flex flex-col bg-blue shadow-xl w-[60vw] mx-auto mb-4 rounded'>
                 <div className='flex text-white'>

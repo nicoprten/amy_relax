@@ -1,13 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
+import React from 'react'
+import { useState } from 'react'
 
-import DatePicker from "react-datepicker";
-import { registerLocale } from  "react-datepicker";
-import es from 'date-fns/locale/es';
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker"
+import { registerLocale } from  "react-datepicker"
+import es from 'date-fns/locale/es'
+import "react-datepicker/dist/react-datepicker.css"
 
-import { db } from './../firebase';
-import { collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { db } from './../firebase'
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore'
+
+import { SelectMassage } from './Selectors/SelectMassage'
 
 export const ShowSelecter = ({reservation, setReservation}) => {
     let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -55,20 +57,7 @@ export const ShowSelecter = ({reservation, setReservation}) => {
 
   return (
     <>
-        {reservation.massage_type === 'default' &&
-            <div className='my-8 select-none'>
-                <p className='text-center text-xl text-black my-4'>Seleccione el tipo de masaje</p>
-                <div className='flex flex-wrap justify-center gap-4 my-4'>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Sesion de Reiki</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Masaje descontracturante</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Masajes a embarazadas y a niños</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Drenaje linfático</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Reflexologia podal</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Exfoliación e hidratación</button>
-                    <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, massage_type: e.target.innerHTML})}>Limpieza facial y drenaje</button>
-                </div>
-            </div>
-        }
+        <SelectMassage />
         {(reservation.massage_type !== 'default' && reservation.duration === 'default') &&
             <>
                 <p className='text-center text-xl text-black my-6'>Seleccione la duración del masaje</p>
