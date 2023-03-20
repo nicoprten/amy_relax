@@ -1,7 +1,13 @@
 const initialState = {
     schedules: [],
     user: JSON.parse(localStorage.getItem('user')),
-    reservation: {}
+    reservation: {
+        massage_type: "default",
+        duration: "default",
+        day: "default",
+        hour: "default",
+        client: "default"
+    }
 }
 
 export default function rootReducer(state = initialState, action){
