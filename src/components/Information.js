@@ -1,28 +1,33 @@
-import React from 'react'
+import { useState, useEffect} from 'react'
+
+import { getMassages } from './../methods/index'
 
 export const Information = () =>{
-  return (
-    <div className='flex gap-10 px-80 py-10 mt-10 justify-between bg-brown'>
-        <div className='flex flex-col w-1/6 justify-center items-center gap-2'>
-            <p className="bg-green text-brown text-3xl text-center font-rubik font-extrabold rounded-full leading-[100px] h-[100px] w-[100px]">01.</p>
-            <p className='text-black'>Masaje descontracturante</p>
-            <button className='bg-green text-brown p-2'>Ver más</button>
+
+    const [massages, setMassages] = useState([])
+    
+    const getMassagesNow = async () => {
+        setMassages(await getMassages())
+    }
+
+    useEffect(() => {
+        getMassagesNow();
+    }, [])
+    console.log(massages)
+    return (
+        <div className='bg-violet'>
+            {massages.length > 0 ?
+                <div className='w-[60vw] mx-auto py-10 flex flex-wrap gap-2'>
+                    {massages.map((m, i) => 
+                        <div className='bg-gray p-2 w-[250px]'>
+                            <h3>{m.type}</h3>
+                            <p>{m.description}</p>
+                        </div>
+                    )}
+                </div>
+            :
+                <p>Waiting...</p>
+            }
         </div>
-        <div className='flex flex-col w-1/6 justify-center items-center gap-2'>
-            <p className="bg-green text-brown text-3xl text-center font-rubik font-extrabold rounded-full leading-[100px] h-[100px] w-[100px]">02.</p>
-            <p className='text-black'>Reiki</p>
-            <button className='bg-green text-brown p-2'>Ver más</button>
-        </div>
-        <div className='flex flex-col w-1/6 justify-center items-center gap-2'>
-            <p className="bg-green text-brown text-3xl text-center font-rubik font-extrabold rounded-full leading-[100px] h-[100px] w-[100px]">03.</p>
-            <p className='text-black'>Drenaje linfático</p>
-            <button className='bg-green text-brown p-2'>Ver más</button>
-        </div>
-        <div className='flex flex-col w-1/6 justify-center items-center gap-2'>
-            <p className="bg-green text-brown text-3xl text-center font-rubik font-extrabold rounded-full leading-[100px] h-[100px] w-[100px]">04.</p>
-            <p className='text-black'>Reflexología manual y podal</p>
-            <button className='bg-green text-brown p-2'>Ver más</button>
-        </div>
-    </div>
-  )
+    )
 }
