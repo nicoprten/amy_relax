@@ -13,7 +13,7 @@ import 'tailwindcss/tailwind.css';
 export default function App(){
 
     return(
-        <div className='font-kanit bg-white'>
+        <div className='font-kanit bg-gray0'>
             <NavBar />
             <Routes>
                 <Route path={'/'} element={<Home />} />
