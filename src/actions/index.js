@@ -52,6 +52,6 @@ export function logOut(){
     }
 }
 
-export function newReservation(reservation){
-    return {type: 'SET_RESERVATION', payload: reservation};
+export function changeReservation(reservation){
+    return {type: 'CHANGE_RESERVATION', payload: reservation};
 }

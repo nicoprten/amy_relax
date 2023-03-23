@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import DatePicker from "react-datepicker"
 import { registerLocale } from  "react-datepicker"
@@ -10,8 +11,12 @@ import { db } from './../firebase'
 import { collection, query, where, getDocs, addDoc } from 'firebase/firestore'
 
 import { SelectMassage } from './Selectors/SelectMassage'
+import { SelectDuration } from './Selectors/SelectDuration'
 
-export const ShowSelecter = ({reservation, setReservation}) => {
+export const ShowSelecter = () => {
+
+    const reservation = useSelector(state => state.reservation)
+
     let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     
     // FALTA LA LOGICA PARA PONER HORARIOS LUNES O MARTES / SABADOS O DOMINGOS
@@ -58,22 +63,7 @@ export const ShowSelecter = ({reservation, setReservation}) => {
   return (
     <>
         <SelectMassage />
-        {(reservation.massage_type !== 'default' && reservation.duration === 'default') &&
-            <>
-                <p className='text-center text-xl text-black my-6'>Seleccione la duración del masaje</p>
-                <div className='flex flex-wrap justify-center gap-4 my-20'>
-                    <div className='flex flex-col items-center gap-4 w-1/4 group'>
-                        <button className='w-full text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, duration: '60 min'})}>60 minutos</button>
-                        <span className='w-max bg-brown p-2 rounded text-sm opacity-0 group-hover:opacity-100 duration-200'>$40</span>
-                    </div>
-                    <div className='flex flex-col items-center gap-4 w-1/4 group'>
-                        <button className='w-full text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => setReservation({...reservation, duration: '90 min'})}>90 minutos</button>
-                        <span className='w-max bg-brown p-2 rounded text-sm opacity-0 group-hover:opacity-100 duration-200'>$55</span>
-                    </div>
-                </div>
-                <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => setReservation({...reservation, massage_type: 'default'})}>Volver</button>
-            </>
-        }
+        <SelectDuration />
         {(reservation.duration !== 'default' && reservation.day === 'default') &&
             <div>
                 <p className='text-center text-xl text-black my-6'>Seleccione el día</p>
