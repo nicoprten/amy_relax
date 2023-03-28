@@ -32,7 +32,7 @@ export const SelectDuration = () => {
                 <>
                     <p className='w-max mx-auto p-1 border-b-blue border-b-1 text-blue text-xs font-thin'>Select the duration of the massage</p>
                     <div className='flex flex-wrap justify-center gap-4 my-8'>
-                        {durations.map((d,i) => 
+                        {durations?.map((d,i) => 
                             <div className='flex flex-col items-center gap-4 w-1/4 group' key={i}>
                                 <button className='w-full text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => dispatch(changeReservation({...reservation, duration: d.duration, price: d.price}))}>{d.duration}</button>
                                 <span className='w-max bg-brown p-2 rounded text-sm opacity-0 group-hover:opacity-100 duration-200'>{d.price}€</span>

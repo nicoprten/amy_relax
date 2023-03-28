@@ -20,7 +20,7 @@ export const Comments = ({ comment }) => {
     }
 
     return (
-        <div className='flex flex-col gap-4 items-center w-[40vw] bg-gray0 mt-12'>
+        <div className='flex flex-col gap-4 items-center w-full px-8 md:px-0 md:w-[40vw] bg-gray0 mt-12'>
             {comments.length > 0 ?
                 <>
                     {comments.filter((c, i) => i < totalComments).map((c, i) => 

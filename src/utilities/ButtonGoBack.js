@@ -9,6 +9,6 @@ export const ButtonGoBack = ({toDefault}) => {
     const reservation = useSelector(state => state.reservation)
 
     return (
-        <button className='w-[120px] text-black border-1 border-black p-2 hover:bg-black hover:text-white0 duration-200' onClick={() => dispatch(changeReservation({...reservation, [toDefault]: 'default'}))}>Back</button>
+        <button className='md:w-[120px] w-full text-black border-1 border-black p-2 hover:bg-black hover:text-white0 duration-200' onClick={() => dispatch(changeReservation({...reservation, [toDefault]: 'default'}))}>Back</button>
     )
 }
