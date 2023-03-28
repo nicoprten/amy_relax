@@ -52,6 +52,7 @@ export async function getMassages(){
     return massages;
 } 
 
+// CREA EL DIA CON SUS HORARIOS DISPONIBLES SI ES QUE TODAVIA NO EXISTE
 export async function setDay(nameDay, numberMonth, numberDay, schedules){
     const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nameDay), where('numDia', '==', numberDay), where('numMes', '==', numberMonth));
     const querySnapshot = await getDocs(q);
@@ -64,11 +65,17 @@ export async function setDay(nameDay, numberMonth, numberDay, schedules){
         });
         setDay(nameDay, numberMonth, numberDay, schedules)
     }else{
-        let hours = [];
-        querySnapshot.forEach((doc) => {
-            console.log(doc.data().horarios)
-            hours.push(doc.data().horarios);
-        });
-        return hours[0]
+        return
     }
+}
+
+export async function getHours(nameDay, numberMonth, numberDay){
+    let hours = []
+    const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nameDay), where('numDia', '==', +numberDay), where('numMes', '==', numberMonth));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        hours.push(doc.data());
+    });
+    console.log(hours)
+    return hours[0].horarios;
 }

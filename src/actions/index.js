@@ -1,14 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { convertDate } from "./../methods/index.js";
 
-export function setSchedules(schedules){
-    console.log(schedules)
-    return {
-        type: 'SCHEDULES', 
-        payload: schedules
-    }
-}
-
 export function logIn(){
     return async function (dispatch){
         if(JSON.parse(localStorage.getItem('user')) === null){

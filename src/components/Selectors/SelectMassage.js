@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getMassages } from './../../methods/index'
+import { getMassages, setDay } from './../../methods/index'
 import { changeReservation } from './../../actions/index'
 
 export const SelectMassage = () => {

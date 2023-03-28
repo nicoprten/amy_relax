@@ -26,11 +26,9 @@ export const SelectDay = () => {
         let nameDay = days[date.getDay()];
         let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1).toString();
         let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-        const hours = await setDay(nameDay, month, day, horariosLM)
-        console.log(hours)
-        awaitdispatch(setSchedules(hours))
+        await setDay(nameDay, month, day, horariosLM)
         dispatch(changeReservation({...reservation, day: `${nameDay} ${day}/${month}/${date.getFullYear()}`}));
-    }
+    }    
 
     return (
         <>
