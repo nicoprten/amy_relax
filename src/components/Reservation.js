@@ -8,6 +8,7 @@ import { ShowSelecter } from './ShowSelecter'
 import { logIn, changeReservation } from './../actions/index.js'
 
 import { CaretDoubleRight } from 'phosphor-react'
+import { ButtonGoBack } from '../utilities/ButtonGoBack'
 
 export const Reservation = () => {
 
@@ -18,7 +19,6 @@ export const Reservation = () => {
     // LOGICA PARA FINALIZAR LA RESERVA CUANDO LLEGA A HORARIOS
 
     function handleReservation(){
-        dispatch(changeReservation(reservation));
         dispatch(logIn());
         navigate('/datos_reserva');
     }
@@ -47,7 +47,7 @@ export const Reservation = () => {
         </div>
         {/* RESUME BOOK MASSAGE */}
         {reservation.massage !== 'default' &&
-            <div className='flex flex-col w-[60vw] mx-auto justify-start'>
+            <div className='flex flex-col xl:flex-row w-[60vw] mx-auto justify-between'>
                 <div className='flex items-start w-max bg-blue shadow-xl mb-4 text-white text-xs border-8 border-blue rounded'>
                     <p className='text-center p-2'>RESERVATION DETAILS</p>
                     <div className='flex flex-col gap-2 px-8 w-full'>
@@ -55,9 +55,9 @@ export const Reservation = () => {
                     </div>
                 </div>
                 {reservation.hour !== 'default' &&
-                    <div className='flex flex-col text-sm text-white0'>
-                        <button className='bg-blue border-1 border-blue p-2 hover:bg-white0 hover:text-black duration-200'  onClick={() => handleReservation()}>BOOK</button>
-                        <button className='bg-blue border-1 border-blue p-2 hover:bg-white0 hover:text-black duration-200' onClick={() => dispatch(changeReservation({...reservation, hour: 'default'}))}>BACK</button>
+                    <div className='flex flex-col gap-2 text-sm text-white0 w-[120px]'>
+                        <button className='border-1 border-black text-black p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleReservation()}>BOOK</button>
+                        <ButtonGoBack toDefault={'hour'} />
                     </div>
                 }
             </div>

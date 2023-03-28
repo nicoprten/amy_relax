@@ -33,3 +33,25 @@ input[type=number] {
   -webkit-box-sizing:border-box; 
   -ms-box-sizing:border-box;
 }
+
+.react-datepicker-wrapper{
+  width: max-content !important;
+}
+.react-datepicker__header{
+  background-color: #b69da4 !important;
+}
+.react-datepicker__navigation--next{
+  top: 8px !important;
+}
+.react-datepicker__navigation-icon::before{
+  border-color: #181e23 !important;
+}
+
+.react-datepicker__day--selected{
+  background-color: #181e23 !important;
+}
+
+.react-datepicker__tab-loop{
+  position: absolute;
+  left: 0;
+}

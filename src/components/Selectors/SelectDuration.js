@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeReservation } from './../../actions/index'
 import { getMassages } from './../../methods/index'
 
+import { ButtonGoBack } from './../../utilities/ButtonGoBack'
+
 export const SelectDuration = () => {
 
     const [durations, setDurations] = useState([])
 
     const reservation = useSelector(state => state.reservation)
-    
     const dispatch = useDispatch();
     
     useEffect(()=>{
@@ -38,7 +39,7 @@ export const SelectDuration = () => {
                             </div>
                         )}
                     </div>
-                    <button className='w-max text-green border-1 border-green p-2 rounded hover:bg-green hover:text-white duration-200' onClick={() => dispatch(changeReservation({...reservation, massage: 'default'}))}>Volver</button>
+                    <ButtonGoBack toDefault={'massage'} />
                 </>
             }
         </>

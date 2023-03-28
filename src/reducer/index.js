@@ -14,9 +14,10 @@ const initialState = {
 export default function rootReducer(state = initialState, action){
     switch(action.type){
         case 'SCHEDULES':
+            console.log(action.payload)
             return{
                 ...state,
-                schedules: action.payload
+                schedules: [...action.payload]
             };
         case 'LOG_IN':
             return{

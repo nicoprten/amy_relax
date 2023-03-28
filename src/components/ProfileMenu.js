@@ -8,7 +8,6 @@ import useComponentVisible from '../utilities/UseComponentVisible.js';
 export const ProfileMenu = ({ user }) => {
 
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
-    console.log(ref, isComponentVisible)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();

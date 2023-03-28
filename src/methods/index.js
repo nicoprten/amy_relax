@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, getDocs, query, orderBy, limit, where } from "firebase/firestore";
 import { db } from './../firebase.js';
 
 // Parse date (miliseconds for example) to dd/mm/yyyy
@@ -30,7 +30,6 @@ export async function postComment(user, comment){
         userImg: user.image,
         userName: user.name
     });
-    console.log("Document written with ID: ", dbRef.id);
 }
 
 export async function getComments(){
@@ -52,3 +51,24 @@ export async function getMassages(){
     });
     return massages;
 } 
+
+export async function setDay(nameDay, numberMonth, numberDay, schedules){
+    const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nameDay), where('numDia', '==', numberDay), where('numMes', '==', numberMonth));
+    const querySnapshot = await getDocs(q);
+    if(querySnapshot.empty){
+        const docRef = await addDoc(collection(db, "Disponibilidad"), {
+            nombreDia: nameDay,
+            numMes: numberMonth,
+            numDia: numberDay,
+            horarios: schedules
+        });
+        setDay(nameDay, numberMonth, numberDay, schedules)
+    }else{
+        let hours = [];
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data().horarios)
+            hours.push(doc.data().horarios);
+        });
+        return hours[0]
+    }
+}
