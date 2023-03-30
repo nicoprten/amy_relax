@@ -14,7 +14,6 @@ registerLocale("es", es); // register it with the name you want
 export const SelectDay = () => {
 
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    let horariosLM = ['08:00hs', '08:30hs', '09:00hs', '09:30hs', '10:00hs', '10:30hs', '11:00hs'];
 
     let startDay = new Date();
     let lastDay = new Date(new Date().setMonth(new Date().getMonth() + 1));
@@ -33,7 +32,7 @@ export const SelectDay = () => {
         }else{
             hours = createHours({from: 8, until: 10})
         }
-        await setDay(nameDay, month, day, hours)
+        await setDay(nameDay, month.toString(), day.toString(), hours)
         dispatch(changeReservation({...reservation, day: `${nameDay} ${day}/${month}/${date.getFullYear()}`}));
     }    
 

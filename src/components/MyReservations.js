@@ -14,15 +14,17 @@ export const MyReservations = () => {
             setReservations(allReservations)
         })()
     }, [])
-
+    console.log(reservations)
     function compareDate(date){
         let parts = date.split('/')
-        let dateByParts = new Date(parts[2], parts[1] - 1, parts[0].split(' ')[1])
-        let actualDate = new Date()
         console.log(parts)
-        console.log(dateByParts.getTime())
-        console.log(actualDate.getTime())
-        if(dateByParts > actualDate){
+        let reservationDate = new Date(parts[2], parts[1] - 1, parts[0].split(' ')[1])
+        let limitDate = new Date(reservationDate)
+        limitDate.setDate(reservationDate.getDate() - 1)
+        let actualDate = new Date()
+        console.log(limitDate)
+
+        if(reservationDate > actualDate && actualDate < limitDate){
             return true
         }else{
             return false
@@ -33,11 +35,12 @@ export const MyReservations = () => {
         <>
             <div className='w-full sm:w-[70vw] mx-auto pt-20 border-b-gray border-b-1'>
                 <div className="p-4 pb-8 text-sm">
-                    <p className='text-lg border-b-1 border-gray pb-2 font-black'>My reservations</p>
+                    <h2 className='text-lg font-black'>My reservations</h2>
+                    <p className='text-brown-dark text-xs border-b-1 border-gray pb-2 '>You can cancel your reservation up to 2 days before the date</p>
                         {reservations.length > 0 &&
-                            <div className='flex'>
+                            <div className='flex flex-wrap'>
                                 {reservations.map((r, i) =>
-                                    <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 w-[200px] rounded overflow-hidden' key={i}>
+                                    <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] rounded overflow-hidden' key={i}>
                                         <div className='border-b-1 border-gray p-2'>
                                             <p className='text-xs text-brown-dark'>CLIENT</p>
                                             <p className=''>{r.client.name}</p>

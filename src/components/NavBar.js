@@ -12,7 +12,7 @@ export const NavBar = () => {
   const currentUser = useSelector(state => state.user)
   
   return (
-    <div className='fixed z-10 w-full top-0 h-[4em] flex justify-between bg-brown py-8 px-14 items-center shadow-lg text-brown-dark text-sm'>
+    <div className='fixed z-50 w-full top-0 h-[4em] flex justify-between bg-brown py-8 px-14 items-center shadow-lg text-brown-dark text-sm'>
         <Link to='./' className='p-2' onClick={() => console.log('./')}><img className='w-full h-[40px] object-fit' src='./img/lotus-flower.png' alt='Lotus flower icon'/></Link>
         <ul className='flex gap-10 list-none'>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={(e) => scrollLink(e)}>ABOUT ME</button></li>

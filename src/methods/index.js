@@ -85,8 +85,11 @@ export async function getHours(nameDay, numMonth, numDay){
     const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
+        console.log('JAJAAJJ')
+        console.log(doc.data())
         hours.push(doc.data());
     });
+    console.log(hours)
     return hours[0].schedules;
 }
 
