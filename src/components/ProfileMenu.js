@@ -1,4 +1,3 @@
-import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -21,13 +20,13 @@ export const ProfileMenu = ({ user }) => {
     return(
         <div className='relative' ref={ref}>
             {/* NAVBAR */}
-            <div className={isComponentVisible ? 'w-max flex gap-2 justify-items-end items-center p-1 rounded-full border-1 border-black bg-white hover:cursor-pointer' : 'w-max flex gap-2 justify-items-end items-center p-1 rounded-full border-1 hover:cursor-pointer hover:bg-white hover:text-blue duration-200'} onClick={() => setIsComponentVisible(!isComponentVisible)}>
+            <div className={isComponentVisible ? 'w-max flex gap-2 justify-items-end items-center p-1 rounded-full border-1 border-black bg-brown-dark hover:cursor-pointer' : 'w-max flex gap-2 justify-items-end items-center p-1 rounded-full border-1 hover:cursor-pointer hover:bg-brown-dark hover:text-blue duration-200'} onClick={() => setIsComponentVisible(!isComponentVisible)}>
                 <img className='w-[40px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user?.name}`} referrerPolicy='no-referrer' />
                 {/* <p className='text-sm'>{user?.name}</p> */}
             </div>
             {/* MENU PROFILE */}
             {(isComponentVisible) &&
-                <div className='flex flex-col items-center gap-4 text-violet absolute top-[60px] right-[-20px] bg-white0 p-4 rounded shadow-xl border-1 border-black md:w-[200px]'>
+                <div className='flex flex-col items-center gap-4 text-black absolute top-[60px] right-[-20px] bg-white0 p-4 rounded shadow-xl border-1 border-gray md:w-[200px]'>
                     <img className='w-[75px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user?.name}`} />
                     <div className='flex flex-col items-center border-b-1 border-blue pb-2'>
                         <p className='text-xl'>{user?.name}</p>
@@ -35,8 +34,8 @@ export const ProfileMenu = ({ user }) => {
                     </div>
                     <p className='text-xs'>{user?.email}</p>
                     <div className='flex flex-col gap-2 w-full text-white0'>
-                        <button className='border-1 border-black bg-black rounded p-2 text-sm hover:text-violet-light duration-200' onClick={() => console.log('mis reservas direction')}>Reservations</button>
-                        <button className='border-1 border-black bg-black rounded p-2 text-sm hover:text-violet-light duration-200' onClick={() => handleLogOut()}>Log Out</button>
+                        <button className='border-1 border-black bg-black p-2 text-sm rounded hover:bg-white0 hover:text-black duration-200' onClick={() => console.log('mis reservas direction')}>Reservations</button>
+                        <button className='border-1 border-black bg-black p-2 text-sm rounded hover:bg-white0 hover:text-black duration-200' onClick={() => handleLogOut()}>Sign out</button>
                     </div>
                 </div>
             }    

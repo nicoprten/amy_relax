@@ -79,3 +79,20 @@ export async function getHours(nameDay, numberMonth, numberDay){
     console.log(hours)
     return hours[0].horarios;
 }
+
+export async function postReservation(data){
+    const dbRef = await addDoc(collection(db, "Reservas"), {
+        data
+    });
+}
+
+export async function getReservations(email){
+    let reservations = []
+    const q = query(collection(db, "Reservas"), where('data.client.email', '==', email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        reservations.push(doc.data().data);
+    });
+    console.log(reservations)
+    return reservations;
+}

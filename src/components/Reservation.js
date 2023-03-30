@@ -20,7 +20,7 @@ export const Reservation = () => {
 
     function handleReservation(){
         dispatch(logIn());
-        navigate('/datos_reserva');
+        navigate('/reservation_resume');
     }
 
   return (

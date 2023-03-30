@@ -23,7 +23,6 @@ export default function rootReducer(state = initialState, action){
                 user: null
             };
         case 'CHANGE_RESERVATION':
-            console.log(action.payload)
             return{
                 ...state,
                 reservation: action.payload

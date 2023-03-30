@@ -15,23 +15,25 @@ export const FormReservation = ({userData, setUserData, error}) => {
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="name">
                             Name*
                         </label>
-                        <input className='p-2 focus:outline-0 w-full md:w-max' id='name' type="text" onChange={(e) => setUserData({...userData, name: e.target.value})} value={user?.name}></input>
+                        <input className='p-2 focus:outline-0 w-full md:w-max' id='name' type="text" onChange={(e) => setUserData({...userData, name: e.target.value})} value={userData.name}></input>
                     </div>
-                    <div className='relative border-1 border-gray p-2 m-2 w-full md:w-max'>
+                    <div className='relative border-1 border-gray p-2 m-2 w-full group md:w-max'>
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="phone">
                             Phone*
                         </label>
                         <input className='p-2 focus:outline-0 w-full md:w-max' id='phone' type="number" onChange={(e) => setUserData({...userData, phone: e.target.value})}></input>
+                        <span className='z-10 absolute left-[-1px] w-max bg-black px-2 rounded text-xs text-brown hidden group-hover:block duration-200'>{userData.phone.length < 9 && 'Must have more than 8 digits, ' + (9 - userData.phone.length) + ' to go'}</span>
                     </div>
-                    <div className='relative border-1 border-gray p-2 m-2 w-full md:w-max'>
+                    <div className='relative border-1 border-gray p-2 m-2 w-full group md:w-max'>
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="email">
                             Email*
                         </label>
-                        <input className='p-2 focus:outline-0 w-full md:w-max' id='email' type="text" onChange={(e) => setUserData({...userData, email: e.target.value})} value={user?.email}></input>
+                        <input className='p-2 focus:outline-0 w-full md:w-max' id='email' readOnly type="text" onChange={(e) => setUserData({...userData, email: e.target.value})} value={userData.email}></input>
+                        <span className='z-10 absolute left-[-1px] w-max bg-black px-2 rounded text-xs text-brown hidden group-hover:block duration-200'>You will receive the summary at this email</span>
                     </div>
                 </div>
                 {error && 
-                    <p className='absolute bottom-0 bg-black text-white0 p-2 rounded-t-xl w-max text-xs mx-2'>Complete all fields to confirm</p>
+                    <p className='absolute bottom-0 bg-red text-black p-2 rounded-t-xl w-max text-xs mx-2'>Complete all fields to confirm</p>
                 }
             </div>
         </>
