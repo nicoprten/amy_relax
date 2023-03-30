@@ -24,13 +24,13 @@ export const FinalReservation = () => {
         if(reservation.hour !== 'default'){
             localStorage.setItem('reservation', JSON.stringify(reservation));
         }
-
+        
         // return () => {
-
+        //     localStorage.removeItem('reservation');
         // }
     }, [reservation])
     
-    async function handleFinalReserve(){
+    async function handleFinalReservation(){
         if(userData.email !== '' && userData.phone.toString().length > 8 && userData.name !== ''){
             console.log({
                 ...JSON.parse(localStorage.getItem('reservation')),
@@ -59,7 +59,7 @@ export const FinalReservation = () => {
                 <p className='bg-brown text-brown-dark p-2 mx-4 sm:mx-0 rounded-xl w-max text-xs'>No advance payment is required</p>
                 <div className='flex flex-wrap flex-wrap-reverse gap-2 my-4 mx-4 sm:mx-0'>
                     <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200' onClick={() => console.log('volver')}>Cancel</button>
-                    <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleFinalReserve()}>Confirm</button>
+                    <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleFinalReservation()}>Confirm</button>
                 </div>
             </>
         :

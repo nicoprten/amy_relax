@@ -7,13 +7,11 @@ export const MyReservations = () => {
 
     const user = useSelector(state => state.user)
     const [reservations, setReservations] = useState([])
-    // const [showOptions, setShowOptions] = useState(true)
 
     useEffect(() =>{
         (async () => {
             const allReservations = await getReservations(user.email)
             setReservations(allReservations)
-            // setShowOptions(compareDate(allReservations.day))
         })()
     }, [])
 
@@ -33,7 +31,7 @@ export const MyReservations = () => {
 
     return (
         <>
-            <div className='w-full sm:w-[70vw] mx-auto py-20 border-b-gray border-b-1'>
+            <div className='w-full sm:w-[70vw] mx-auto pt-20 border-b-gray border-b-1'>
                 <div className="p-4 pb-8 text-sm">
                     <p className='text-lg border-b-1 border-gray pb-2 font-black'>My reservations</p>
                         {reservations.length > 0 &&

@@ -5,7 +5,6 @@ export const FormReservation = ({userData, setUserData, error}) => {
 
     const user = useSelector(state => state.user);
     
-    console.log(userData)
     return (
         <>
             <div className='relative sm:grow bg-white0 border-1 border-gray rounded p-4 pb-8 shadow-lg text-sm'>

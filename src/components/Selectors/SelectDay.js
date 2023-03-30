@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { changeReservation, setSchedules } from './../../actions/index'
 
-import { setDay } from './../../methods'
+import { setDay, createHours } from './../../methods'
 
 import { ButtonGoBack } from './../../utilities/ButtonGoBack'
 
@@ -13,7 +13,7 @@ registerLocale("es", es); // register it with the name you want
 
 export const SelectDay = () => {
 
-    let days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let horariosLM = ['08:00hs', '08:30hs', '09:00hs', '09:30hs', '10:00hs', '10:30hs', '11:00hs'];
 
     let startDay = new Date();
@@ -26,7 +26,14 @@ export const SelectDay = () => {
         let nameDay = days[date.getDay()];
         let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1).toString();
         let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-        await setDay(nameDay, month, day, horariosLM)
+
+        let hours = []
+        if(nameDay === days[1] || nameDay === days[2]){
+            hours = createHours({from: 8, until: 20})
+        }else{
+            hours = createHours({from: 8, until: 10})
+        }
+        await setDay(nameDay, month, day, hours)
         dispatch(changeReservation({...reservation, day: `${nameDay} ${day}/${month}/${date.getFullYear()}`}));
     }    
 

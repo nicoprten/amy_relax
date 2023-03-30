@@ -13,6 +13,17 @@ export function convertDate(date){
     return dateConverted;
 }
 
+export function createHours({from, until}){
+    const schedule = [];
+    for (let hours = from; hours < until; hours++) {
+        for (let minutes = 0; minutes < 60; minutes += 30) {
+            const time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            schedule.push(time);
+        }
+    }
+    return schedule
+}
+
 // Order array of objects by date dd/mm/yyyy
 // export function sortByDate(dates){
 //     dates.sort(function(a, b){
@@ -53,35 +64,72 @@ export async function getMassages(){
 } 
 
 // CREA EL DIA CON SUS HORARIOS DISPONIBLES SI ES QUE TODAVIA NO EXISTE
-export async function setDay(nameDay, numberMonth, numberDay, schedules){
-    const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nameDay), where('numDia', '==', numberDay), where('numMes', '==', numberMonth));
+export async function setDay(nameDay, numMonth, numDay, schedules){
+    const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
     const querySnapshot = await getDocs(q);
     if(querySnapshot.empty){
         const docRef = await addDoc(collection(db, "Disponibilidad"), {
-            nombreDia: nameDay,
-            numMes: numberMonth,
-            numDia: numberDay,
-            horarios: schedules
+            nameDay,
+            numMonth,
+            numDay,
+            schedules
         });
-        setDay(nameDay, numberMonth, numberDay, schedules)
+        setDay(nameDay, numMonth, numDay, schedules)
     }else{
         return
     }
 }
 
-export async function getHours(nameDay, numberMonth, numberDay){
+export async function getHours(nameDay, numMonth, numDay){
     let hours = []
-    const q = query(collection(db, "Disponibilidad"), where('nombreDia', '==', nameDay), where('numDia', '==', +numberDay), where('numMes', '==', numberMonth));
+    const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         hours.push(doc.data());
     });
-    console.log(hours)
-    return hours[0].horarios;
+    return hours[0].schedules;
 }
 
 export async function postReservation(data){
-    const dbRef = await addDoc(collection(db, "Reservas"), {
+    // Getting the array with the schedules availables and saving it in oldHours, also save dayId for edit doc in the future
+    let oldHours = []
+    let dayId = ''
+    let nameDay = data.day.split(' ')[0]
+    let numDay = data.day.split(' ')[1].split('/')[0]
+    let numMonth = data.day.split(' ')[1].split('/')[1]
+    const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        dayId = doc.id
+        oldHours = doc.data().schedules;
+    });
+
+    // Now I create a new array with the schedules that the client is taking
+    let hoursTaken = Math.ceil(+data.duration / 30 - 1)
+    let schedulesBooked = [data.hour]
+    let [hour, minutes] = schedulesBooked[0].split(':')
+    let date = new Date()
+    date.setHours(hour)
+    date.setMinutes(minutes)
+    for(let times = 0; times < hoursTaken; times++){
+        date.setMinutes(date.getMinutes() + 30 * (times + 1))
+        schedulesBooked.push(`${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`)
+    }
+
+    // And then filter the two arrays
+    let hoursAvailables = oldHours.filter(hour => !schedulesBooked.includes(hour))
+
+    // Edit the doc in firestore
+    const dayRef = collection(db, "Disponibilidad");
+    await setDoc(doc(dayRef, dayId), {
+        nameDay,
+        numDay,
+        numMonth,
+        schedules: hoursAvailables
+    });
+
+    // Post reservation
+    const docRef = await addDoc(collection(db, "Reservas"), {
         data
     });
 }
@@ -93,6 +141,5 @@ export async function getReservations(email){
     querySnapshot.forEach((doc) => {
         reservations.push(doc.data().data);
     });
-    console.log(reservations)
     return reservations;
 }

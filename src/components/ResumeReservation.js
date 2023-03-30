@@ -22,7 +22,7 @@ export const ResumeReservation = () => {
                 </div>
                 <div className="flex justify-between items-center p-1 m-2">
                     <p className='bg-black p-2 text-white0'>Hour</p>
-                    <p className=''>{reservation.hour}</p>
+                    <p className=''>{reservation.hour} hs</p>
                 </div>
                 <div className="flex justify-between items-center p-1 m-2">
                     <p className='bg-black p-2 text-white0'>Massage</p>
@@ -30,11 +30,11 @@ export const ResumeReservation = () => {
                 </div>
                 <div className="flex justify-between items-center p-1 m-2">
                     <p className='bg-black p-2 text-white0'>Duration</p>
-                    <p className=''>{reservation.duration}m</p>
+                    <p className=''>{reservation.duration} m</p>
                 </div>
                 <div className="flex justify-between items-center p-1 m-2">
                     <p className='bg-black p-2 text-white0'>Price</p>
-                    <p className=''>€{reservation.price}</p>
+                    <p className=''>€ {reservation.price}</p>
                 </div>
                 <img className='z-0 absolute bottom-[-40px] right-[-25px] w-[100px] object-cover' src={'./img/lotus-flower.png'} alt='lotus flower' />
             </div>

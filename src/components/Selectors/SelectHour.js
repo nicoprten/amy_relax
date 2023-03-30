@@ -12,9 +12,6 @@ export const SelectHour = () => {
     const [hours, setHours] = useState([])
 
     const reservation = useSelector(state => state.reservation)
-    // const hours = useSelector(state => state.schedules)
-    console.log(reservation.day)
-    console.log(hours)
     const dispatch = useDispatch();
 
     useEffect(() => {

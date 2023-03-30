@@ -34,7 +34,7 @@ export const ProfileMenu = ({ user }) => {
                     </div>
                     <p className='text-xs'>{user?.email}</p>
                     <div className='flex flex-col gap-2 w-full text-white0'>
-                        <button className='border-1 border-black bg-black p-2 text-sm rounded hover:bg-white0 hover:text-black duration-200' onClick={() => console.log('mis reservas direction')}>Reservations</button>
+                        <button className='border-1 border-black bg-black p-2 text-sm rounded hover:bg-white0 hover:text-black duration-200' onClick={() => navigate('./reservations')}>Reservations</button>
                         <button className='border-1 border-black bg-black p-2 text-sm rounded hover:bg-white0 hover:text-black duration-200' onClick={() => handleLogOut()}>Sign out</button>
                     </div>
                 </div>
