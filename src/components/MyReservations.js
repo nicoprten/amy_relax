@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { getReservations } from './../methods'
 
 
@@ -17,12 +19,10 @@ export const MyReservations = () => {
     console.log(reservations)
     function compareDate(date){
         let parts = date.split('/')
-        console.log(parts)
         let reservationDate = new Date(parts[2], parts[1] - 1, parts[0].split(' ')[1])
         let limitDate = new Date(reservationDate)
         limitDate.setDate(reservationDate.getDate() - 1)
         let actualDate = new Date()
-        console.log(limitDate)
 
         if(reservationDate > actualDate && actualDate < limitDate){
             return true
@@ -37,7 +37,7 @@ export const MyReservations = () => {
                 <div className="p-4 pb-8 text-sm">
                     <h2 className='text-lg font-black'>My reservations</h2>
                     <p className='text-brown-dark text-xs border-b-1 border-gray pb-2 '>You can cancel your reservation up to 2 days before the date</p>
-                        {reservations.length > 0 &&
+                        {reservations.length > 0 ?
                             <div className='flex flex-wrap'>
                                 {reservations.map((r, i) =>
                                     <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] rounded overflow-hidden' key={i}>
@@ -68,6 +68,8 @@ export const MyReservations = () => {
                                     </div>
                                 )}
                             </div>
+                        :
+                            <p className='h-[35vh] my-10 text-center leading-[35vh]'>You don´t have any reservation yet, you can do one <Link className='p-2 bg-brown-dark text-white0' to='/'>here.</Link></p>
                         }
                 </div>
             </div>

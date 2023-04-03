@@ -13,8 +13,8 @@ export const NavBar = () => {
   
   return (
     <div className='fixed z-50 w-full top-0 h-[4em] flex justify-between bg-brown py-8 px-14 items-center shadow-lg text-brown-dark text-sm'>
-        <Link to='./' className='p-2' onClick={() => console.log('./')}><img className='w-full h-[40px] object-fit' src='./img/lotus-flower.png' alt='Lotus flower icon'/></Link>
-        <ul className='flex gap-10 list-none'>
+        <Link to='./' className='p-2' onClick={() => console.log('./')}><img className='w-full h-[50px] object-fit' src='./img/lotus-flower-brown-dark.png' alt='Lotus flower icon'/></Link>
+        <ul className='hidden flex gap-10 list-none sm:inline-flex'>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={(e) => scrollLink(e)}>ABOUT ME</button></li>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={(e) => scrollLink(e)}>MASSAGES</button></li>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={(e) => scrollLink(e)}>RESERVE</button></li>

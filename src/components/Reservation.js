@@ -24,23 +24,23 @@ export const Reservation = () => {
     }
 
   return (
-    <div className='flex flex-col bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-card-violet.svg)'}}>
+    <div className='flex flex-col bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-brown-reservation.jpg)'}}>
         <div className='md:w-[60vw] w-full px-8 md:px-0 mx-auto'>
-            <h2 className='text-blue sm:text-3xl text-xl text-center my-10 bg-violet-light p-2 rounded'>BOOK YOUR NEXT MASSAGE</h2>
+            <h2 className='text-blue sm:text-3xl text-xl text-center my-10 bg-brown p-2 rounded'>BOOK YOUR NEXT MASSAGE</h2>
             <ul className='flex w-full justify-center my-4 text-blue text-sm sm:text-base'>
-                <li className={"flex items-center gap-2 w-1/4 border-2 border-blue p-2 " + (reservation.massage !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>
+                <li className={"flex items-center gap-2 w-1/4 border-2 border-brown p-2 " + (reservation.massage !== 'default' ? 'bg-black text-gray' : 'bg-brown')}>
                     <p>TYPE</p>
                     <CaretDoubleRight className='hidden sm:block' size={22} />
                 </li>
-                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-blue p-2 ' + (reservation.duration !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>
+                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-brown p-2 ' + (reservation.duration !== 'default' ? 'bg-black text-gray' : 'bg-brown')}>
                     <p>DURATION</p>
                     <CaretDoubleRight className='hidden sm:block' size={22} />
                 </li>
-                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-blue p-2 ' + (reservation.day !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>
+                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-brown p-2 ' + (reservation.day !== 'default' ? 'bg-black text-gray' : 'bg-brown')}>
                     <p>DAY</p>
                     <CaretDoubleRight className='hidden sm:block' size={22} />
                 </li>
-                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-blue p-2 ' + (reservation.hour !== 'default' ? 'bg-blue text-gray' : 'bg-violet-light')}>
+                <li className={'flex items-center gap-2 w-1/4 border-2 border-l-0 border-brown p-2 ' + (reservation.hour !== 'default' ? 'bg-black text-gray' : 'bg-brown')}>
                     <p>HOUR</p>
                 </li>
             </ul>
@@ -48,10 +48,10 @@ export const Reservation = () => {
         {/* RESUME BOOK MASSAGE */}
         {reservation.massage !== 'default' &&
             <div className='flex flex-col xl:flex-row md:w-[60vw] w-full px-8 md:px-0 mx-auto justify-between'>
-                <div className='flex items-start md:w-max bg-blue shadow-xl mb-4 text-white text-xs border-8 border-blue rounded'>
+                <div className='flex items-start md:w-max bg-black shadow-xl mb-4 text-white text-xs border-8 border-black rounded'>
                     <p className='text-center p-2'>RESERVATION DETAILS</p>
                     <div className='flex flex-col gap-2 px-8 w-full'>
-                        {Object.keys(reservation).map((value, i) => (reservation[value] !== 'default') && <p className='text-violet-light p-2 border-b-1 border-violet-light' key={i}>{value.charAt(0).toUpperCase() + value.slice(1)}: {reservation[value]}</p>)}
+                        {Object.keys(reservation).map((value, i) => (reservation[value] !== 'default') && <p className='text-brown p-2 border-b-1 border-violet-light' key={i}>{value.charAt(0).toUpperCase() + value.slice(1)}: {reservation[value]}</p>)}
                     </div>
                 </div>
                 {reservation.hour !== 'default' &&
