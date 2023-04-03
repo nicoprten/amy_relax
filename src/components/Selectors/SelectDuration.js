@@ -35,7 +35,7 @@ export const SelectDuration = () => {
                         {durations?.map((d,i) => 
                             <div className='flex flex-col items-center gap-4 w-1/4 group' key={i}>
                                 <button className='w-full text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => dispatch(changeReservation({...reservation, duration: d.duration, price: d.price}))}>{d.duration}</button>
-                                <span className='w-max bg-brown p-2 rounded text-sm opacity-0 group-hover:opacity-100 duration-200'>{d.price}€</span>
+                                <span className='w-max bg-brown-dark p-2 rounded text-sm text-white0 opacity-0 group-hover:opacity-100 duration-200'>{d.price}€</span>
                             </div>
                         )}
                     </div>
