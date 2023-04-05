@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { postReservation } from './../methods'
 
+import emailjs from '@emailjs/browser';
+
 import { FormReservation } from './FormReservation';
 import { ResumeReservation } from './ResumeReservation';
 
@@ -37,10 +39,20 @@ export const FinalReservation = () => {
                 client: userData 
             })
             setError(false)
-            postReservation({
+            let finalReservation = {
                 ...JSON.parse(localStorage.getItem('reservation')),
                 client: userData 
-            })
+            }
+            postReservation(finalReservation)
+
+            // SEND EMAIL WITH RESERVATION DATA
+            emailjs.send('service_5vfkz77', 'template_9evw2nf', {finalReservation}, 'jjazvefRc2dS1o_NG')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
             navigate('/reservations')
         }else{
             setError(true)

@@ -40,7 +40,7 @@ export const MyReservations = () => {
                         {reservations.length > 0 ?
                             <div className='flex flex-wrap'>
                                 {reservations.map((r, i) =>
-                                    <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] rounded overflow-hidden' key={i}>
+                                    <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] h-[318px] rounded overflow-hidden' key={i}>
                                         <div className='border-b-1 border-gray p-2'>
                                             <p className='text-xs text-brown-dark'>CLIENT</p>
                                             <p className=''>{r.client.name}</p>
