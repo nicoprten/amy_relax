@@ -69,7 +69,7 @@ export const MyReservations = () => {
                                 )}
                             </div>
                         :
-                            <p className='h-[35vh] my-10 text-center leading-[35vh]'>You don´t have any reservation yet, you can do one <Link className='p-2 bg-brown-dark text-white0' to='/'>here.</Link></p>
+                            <p className='h-[35vh] my-10 text-center leading-[5vh]'>You don´t have any reservation yet, you can do one <Link className='p-2 bg-brown-dark text-white0' to='/'>here.</Link></p>
                         }
                 </div>
             </div>

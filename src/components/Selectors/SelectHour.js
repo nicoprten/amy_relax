@@ -30,6 +30,18 @@ export const SelectHour = () => {
         }
     }, [reservation])
 
+    function handleChangeHour(h){
+        const dateToCompare = new Date(`2000-01-01T${h}:00`)
+        dateToCompare.setMinutes(dateToCompare.getMinutes() + 30)
+        const nextTurn = dateToCompare.toString().split(' ')[4].slice(0, 5)
+
+        if(+reservation.duration > 30 && !(hours.includes(nextTurn))){
+            console.log('Next shift is busy, select another schedule or a duration of 30 minutes or less.')
+        }else{
+            dispatch(changeReservation({...reservation, hour: h}))
+        }
+    }
+
     return (
         <>
             {(reservation.day !== 'default' && reservation.hour === 'default') &&
@@ -38,10 +50,10 @@ export const SelectHour = () => {
                         <div className='flex flex-wrap justify-center gap-4 py-8 mx-auto'>
                             {Array.isArray(hours) ?
                                 hours?.length > 0 ? hours.map((h, i) => 
-                                <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => dispatch(changeReservation({...reservation, hour: h}))} key={i}>{h}</button>
+                                <button className='w-1/4 text-center bg-black text-white p-2 rounded hover:shadow-xl duration-200' onClick={(e) => handleChangeHour(h)} key={i}>{h}</button>
                                 )
                                 :
-                                <p>No more times available, select another day.</p>
+                                <p className='text-center'>No more times available, select another day.</p>
                             :
                                 <Ring size={35} color="#030303" />
                             }
