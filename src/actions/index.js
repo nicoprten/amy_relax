@@ -40,6 +40,6 @@ export function changeReservation(reservation){
     return {type: 'CHANGE_RESERVATION', payload: reservation};
 }
 
-export function cancelReservation(){
-    return {type: 'CANCEL_RESERVATION'}
+export function deleteReservation(){
+    return {type: 'DELETE_RESERVATION'}
 }
