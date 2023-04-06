@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 export const ResumeReservation = () => {
 
     const [reservation, setReservation] = useState({})
 
-    const user = useSelector(state => state.user);
     // const reservation = useSelector(state => state.reservation);
 
     useEffect(() => {

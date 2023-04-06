@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-export const FormReservation = ({userData, setUserData, error}) => {
+export const FormReservation = ({userData, setUserData, error, setError}) => {
 
     const user = useSelector(state => state.user);
+
+    useEffect(()=>{
+        setError(false)
+    }, [userData])
     
     return (
         <>

@@ -29,7 +29,7 @@ export const ProfileMenu = ({ user }) => {
                 <div className='flex flex-col items-center gap-4 text-black absolute top-[60px] right-[-20px] bg-white0 p-4 rounded shadow-xl border-1 border-gray md:w-[200px]'>
                     <img className='w-[75px] rounded-full' src={user?.image} alt={`Foto de perfil de ${user?.name}`} />
                     <div className='flex flex-col items-center border-b-1 border-blue pb-2'>
-                        <p className='text-xl'>{user?.name}</p>
+                        <p className='text-xl text-center my-1'>{user?.name}</p>
                         <p className='text-xs'>Joined {user.creado.split('-')[0]}/{user?.creado.split('-')[1]} de {user.creado.split('-')[2]}</p>
                     </div>
                     <p className='text-xs'>{user?.email}</p>

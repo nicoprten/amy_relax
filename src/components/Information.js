@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getMassages } from './../methods/index'
 import { changeReservation } from './../actions/index.js'
 
+import { Ring } from '@uiball/loaders'
 
 export const Information = () =>{
 
@@ -52,7 +53,9 @@ export const Information = () =>{
                     )}
                 </div>
             :
-                <p className='p-4 text-center'>Waiting...</p>
+                <div className='flex justify-center p-4'>
+                    <Ring size={35} color="#030303" />
+                </div>
             }
         </div>
     )
