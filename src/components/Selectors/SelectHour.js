@@ -12,6 +12,7 @@ import { Ring } from '@uiball/loaders'
 export const SelectHour = () => {
 
     const [hours, setHours] = useState('default')
+    const [errorHour, setErrorHour] = useState(false)
 
     const reservation = useSelector(state => state.reservation)
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const SelectHour = () => {
         }
         return () => {
             setHours('default')
+            setErrorHour(false)
         }
     }, [reservation])
 
@@ -36,7 +38,7 @@ export const SelectHour = () => {
         const nextTurn = dateToCompare.toString().split(' ')[4].slice(0, 5)
 
         if(+reservation.duration > 30 && !(hours.includes(nextTurn))){
-            console.log('Next shift is busy, select another schedule or a duration of 30 minutes or less.')
+            setErrorHour(true)
         }else{
             dispatch(changeReservation({...reservation, hour: h}))
         }
@@ -46,6 +48,7 @@ export const SelectHour = () => {
         <>
             {(reservation.day !== 'default' && reservation.hour === 'default') &&
                 <>
+                    {errorHour && <p className='text-center bg-brown text-brown-dark p-2 text-xs md:text-sm'>Next shift is busy, select another schedule or a duration of 30 minutes or less.</p>}
                     <p className='w-max mx-auto p-1 border-b-blue border-b-1 text-blue text-xs font-thin'>Select the hour</p>
                         <div className='flex flex-wrap justify-center gap-4 py-8 mx-auto'>
                             {Array.isArray(hours) ?

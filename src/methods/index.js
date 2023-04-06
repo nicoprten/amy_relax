@@ -91,6 +91,12 @@ export async function getHours(nameDay, numMonth, numDay){
 }
 
 export async function postReservation(data){
+
+    // Post reservation
+    const docRef = await addDoc(collection(db, "Reservas"), {
+        data
+    });
+
     // Getting the array with the schedules availables and saving it in oldHours, also save dayId for edit doc in the future
     let oldHours = []
     let dayId = ''
@@ -126,11 +132,6 @@ export async function postReservation(data){
         numDay,
         numMonth,
         schedules: hoursAvailables
-    });
-
-    // Post reservation
-    const docRef = await addDoc(collection(db, "Reservas"), {
-        data
     });
 }
 

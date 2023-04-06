@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { postReservation } from './../methods'
-import { cancelReservation } from './../actions'
+import { deleteReservation } from './../actions'
 
 import emailjs from '@emailjs/browser';
 
@@ -44,7 +44,7 @@ export const FinalReservation = () => {
                 console.log(error.text);
             });
             localStorage.removeItem('reservation');
-            dispatch(cancelReservation())
+            dispatch(deleteReservation())
             navigate('/reservations')
         }else{
             setError(true)
@@ -67,6 +67,7 @@ export const FinalReservation = () => {
                     <FormReservation setUserData={setUserData} userData={userData} error={error} setError={setError}/>
                 </div>
                 <p className='bg-brown text-brown-dark p-2 mx-4 sm:mx-0 rounded-xl w-max text-xs'>No advance payment is required</p>
+                <p className='bg-brown text-brown-dark p-2 mx-4 sm:mx-0 rounded-xl w-max text-xs mt-2'>Check if you have received the email in your spam folder</p>
                 <div className='flex flex-wrap flex-wrap-reverse gap-2 my-4 mx-4 sm:mx-0'>
                     <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200' onClick={() => handleCancel()}>Cancel</button>
                     <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleFinalReservation()}>Confirm</button>
