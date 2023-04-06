@@ -20,6 +20,7 @@ export const Reservation = () => {
 
     function handleReservation(){
         dispatch(logIn());
+        localStorage.setItem('reservation', JSON.stringify(reservation));
         navigate('/reservation_resume');
     }
 

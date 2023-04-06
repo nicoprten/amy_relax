@@ -38,7 +38,7 @@ input[type=number] {
   width: max-content !important;
 }
 .react-datepicker__header{
-  background-color: #b69da4 !important;
+  background-color: #d6d1c3 !important;
 }
 .react-datepicker__navigation--next{
   top: 8px !important;

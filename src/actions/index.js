@@ -39,3 +39,7 @@ export function logOut(){
 export function changeReservation(reservation){
     return {type: 'CHANGE_RESERVATION', payload: reservation};
 }
+
+export function cancelReservation(){
+    return {type: 'CANCEL_RESERVATION'}
+}

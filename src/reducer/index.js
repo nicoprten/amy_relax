@@ -27,6 +27,11 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 reservation: action.payload
             };
+        case 'CANCEL_RESERVATION':
+            return{
+                ...state,
+                reservation: initialState.reservation
+            };
         default:
             return state;
     }
