@@ -35,12 +35,12 @@ export const MyReservations = () => {
     return (
         <>
             <div className='w-full sm:w-[70vw] mx-auto pt-20 border-b-gray border-b-1'>
-                <div className="p-4 pb-8 text-sm">
+                <div className="py-12 text-sm">
                     <h2 className='text-lg font-black'>My reservations</h2>
                     <p className='text-brown-dark text-xs border-b-1 border-gray pb-2 '>You can cancel your reservation up to 2 days before the date</p>
                         {Array.isArray(reservations) ?
                             reservations.length > 0 ?
-                                <div className='flex flex-wrap'>
+                                <div className='flex flex-wrap my-4'>
                                     {reservations.map((r, i) =>
                                         <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] h-[318px] rounded overflow-hidden' key={i}>
                                             <div className='border-b-1 border-gray p-2'>
