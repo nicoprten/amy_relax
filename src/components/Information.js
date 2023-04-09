@@ -28,12 +28,6 @@ export const Information = () =>{
         setReadMore(seeMore)
     }
 
-    function handleBook(massageType){
-        if(reservation.massage === 'default'){
-            dispatch(changeReservation({...reservation, massage:massageType}))
-        }
-    }
-
     return (
         <div className='bg-brown rounded-3xl'>
         {massages.length > 0 ?
@@ -48,7 +42,6 @@ export const Information = () =>{
                             </div>
                             <h3 className='relative w-max rounded bg-gray0 font-bold text-md mx-2 p-2 mt-[-20px]'>{m.type}</h3>
                             <p className='text-sm p-2'>{m.description.slice(0, readMore[i])}{m.description.length > readMore[i] && <button className='text-xs text-violet-light' onClick={() => handleSeeMore(i, m.description.length)}> ...read more</button>}</p>
-                            <button className='absolute border-2 border-l-0 border-blue top-4 left-0 bg-blue text-white0 py-1 px-4 rounded-r hover:bg-white0 hover:text-blue duration-200' onClick={() => handleBook(m.type)}>BOOK</button>
                         </div>
                     )}
                 </div>
