@@ -1,11 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ShowSelecters } from './ShowSelecters'
 
-import { logIn, changeReservation } from './../actions/index.js'
+import { logIn } from './../actions/index.js'
 
 import { CaretDoubleRight } from 'phosphor-react'
 import { ButtonGoBack } from '../utilities/ButtonGoBack'

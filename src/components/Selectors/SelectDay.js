@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 
-import { changeReservation, setSchedules } from './../../actions/index'
+import { changeReservation } from './../../actions/index'
 
 import { setDay, createHours } from './../../methods'
 
@@ -25,7 +25,7 @@ export const SelectDay = () => {
         let nameDay = days[date.getDay()];
         let month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1).toString();
         let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-
+        
         let hours = []
         if(nameDay === days[1] || nameDay === days[2]){
             hours = createHours({from: 8, until: 20})

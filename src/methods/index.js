@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, addDoc, getDocs, query, orderBy, limit, where } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, getDocs, query, orderBy, limit, where, deleteDoc } from "firebase/firestore";
 import { db } from './../firebase.js';
 
 // Parse date (miliseconds for example) to dd/mm/yyyy
@@ -87,7 +87,7 @@ export async function getHours(nameDay, numMonth, numDay){
     querySnapshot.forEach((doc) => {
         hours.push(doc.data());
     });
-    return hours[0].schedules;
+    return hours[0]?.schedules;
 }
 
 export async function postReservation(data){
@@ -140,7 +140,35 @@ export async function getReservations(email){
     const q = query(collection(db, "Reservas"), where('data.client.email', '==', email));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        reservations.push(doc.data().data);
+        reservations.push({...doc.data().data, id: doc.id});
     });
     return reservations;
+}
+
+export async function deleteReservation(id){
+    await deleteDoc(doc(db, "Reservas", id));
+}
+
+export async function changeHoursDay(nameDay, numMonth, numDay, schedules){
+    // GETTING THE ID OF THE DAY IN DISPONIBILIDAD
+    let dayId
+    const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        dayId = doc.id
+    });
+    // SORT ARRAY IN ASCENDENT
+    schedules.sort(function(a, b) {
+        const timeA = new Date("1970-01-01 " + a.replace("hs", "") + ":00");
+        const timeB = new Date("1970-01-01 " + b.replace("hs", "") + ":00");
+        return timeA - timeB;
+      });
+    // CHANGING THE DOC IN FIRESTORE
+    const dayRef = collection(db, "Disponibilidad");
+    await setDoc(doc(dayRef, dayId), {
+        nameDay,
+        numDay,
+        numMonth,
+        schedules
+    });
 }
