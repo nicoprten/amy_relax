@@ -1,15 +1,10 @@
 import { useState, useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
 import { getMassages } from './../methods/index'
-import { changeReservation } from './../actions/index.js'
 
 import { Ring } from '@uiball/loaders'
 
 export const Information = () =>{
-
-    const dispatch = useDispatch()
-    const reservation = useSelector(state => state.reservation)
 
     const [massages, setMassages] = useState([])
     const [readMore, setReadMore] = useState([])
@@ -17,7 +12,8 @@ export const Information = () =>{
     useEffect(() => {
         (async () => {
             const allMassages = await getMassages()
-            allMassages.map(m => setReadMore((prevState) => [...prevState, 110]))
+            allMassages.map(m => setReadMore((prevState) => [...prevState, 100]))
+            console.log(readMore)
             setMassages(allMassages)
         })()
     }, [])
@@ -33,7 +29,7 @@ export const Information = () =>{
         {massages.length > 0 ?
                 <div className='w-[60vw] mx-auto py-10 flex flex-wrap justify-center gap-2'>
                     {massages.map((m, i) => 
-                        <div className='relative bg-white0 w-[300px] h-max rounded-xl' key={i}>
+                        <div className='relative bg-white0 w-[280px] h-max rounded-xl' key={i}>
                             <img className='rounded-t-xl w-full h-[150px] object-cover' src={m.image} alt={m.type} />
                             <div className='absolute top-2 right-2 flex flex-col gap-2 text-xs'>
                                 {m.prices?.map((p,i) => 
