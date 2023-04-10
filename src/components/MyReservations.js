@@ -17,9 +17,9 @@ export const MyReservations = () => {
         (async () => {
             let allReservations = await getReservations(user.email)
             if(showSelect === 'new'){
-                allReservations = allReservations.filter(r => filterReservationByDate(r.day))
+                allReservations = allReservations.filter(r => filterReservationByDate(r.day, r.hour))
             }else{
-                allReservations = allReservations.filter(r => !filterReservationByDate(r.day))
+                allReservations = allReservations.filter(r => !filterReservationByDate(r.day, r.hour))
             }
             setReservations(allReservations)
         })()
@@ -40,9 +40,11 @@ export const MyReservations = () => {
         }
     }
 
-    function filterReservationByDate(date){
+    function filterReservationByDate(date, hour){
         let parts = date.split('/')
         let reservationDate = new Date(parts[2], parts[1] - 1, parts[0].split(' ')[1])
+        reservationDate.setHours(hour.split(':')[0])
+        reservationDate.setMinutes(hour.split(':')[1])
         let actualDate = new Date()
         if(reservationDate >= actualDate){
             return true
