@@ -13,6 +13,7 @@ const initialState = {
 export default function rootReducer(state = initialState, action){
     switch(action.type){
         case 'LOG_IN':
+            console.log(action.payload)
             return{
                 ...state,
                 user: action.payload
@@ -21,6 +22,15 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 user: null
+            };
+        case 'CHANGE_USER':
+            let key = Object.keys(action.payload)[0]
+            return{
+                ...state,
+                user: {
+                    ...state.user,
+                    [key]: action.payload[key]
+                }
             };
         case 'CHANGE_RESERVATION':
             return{

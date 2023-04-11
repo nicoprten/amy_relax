@@ -32,8 +32,6 @@ export const SelectHour = () => {
         }
     }, [reservation])
 
-    console.log(hours)
-
     function handleChangeHour(h){
         const dateToCompare = new Date(`2000-01-01T${h}:00`)
         dateToCompare.setMinutes(dateToCompare.getMinutes() + 30)

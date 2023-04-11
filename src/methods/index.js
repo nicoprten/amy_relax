@@ -82,11 +82,20 @@ export async function setDay(nameDay, numMonth, numDay, schedules){
 
 export async function getHours(nameDay, numMonth, numDay){
     let hours = []
+    let actualDate = new Date()
+    let actualHour
     const q = query(collection(db, "Disponibilidad"), where('nameDay', '==', nameDay), where('numDay', '==', numDay), where('numMonth', '==', numMonth));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         hours.push(doc.data());
     });
+    // IF THE USER IS RESERVING THIS ACTUAL DAY FILTER THE ARRAY
+    if(actualDate.getDate() == +numDay && (actualDate.getMonth() + 1) == +numMonth){
+        actualDate.setHours(actualDate.getHours() + 3)
+        actualHour = actualDate.toString().split(' ')[4].slice(0, 4)
+        hours = hours[0]?.schedules.filter(h => h > actualHour );
+        return hours
+    }
     return hours[0]?.schedules;
 }
 
