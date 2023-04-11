@@ -13,7 +13,6 @@ export const Information = () =>{
         (async () => {
             const allMassages = await getMassages()
             allMassages.map(m => setReadMore((prevState) => [...prevState, 100]))
-            console.log(readMore)
             setMassages(allMassages)
         })()
     }, [])

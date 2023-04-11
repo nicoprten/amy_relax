@@ -12,11 +12,12 @@ export function logIn(){
             const token = credential.accessToken;
             const userGoogle = r.user;
             let userCreated = convertDate(userGoogle.metadata.createdAt);
-            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated, id: userGoogle.uid};
+            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated, id: userGoogle.uid, phone: ''};
             localStorage.setItem('user', JSON.stringify(user));
             dispatch({type:'LOG_IN', payload: user});
         }).catch((error) => {
-            console.log(error)
+            // localStorage.setItem('user', 'none');
+            dispatch({type:'LOG_OUT'});
         });
         }
     }
@@ -34,6 +35,10 @@ export function logOut(){
             console.log(error);
         });
     }
+}
+
+export function changeUser(newData){
+    return {type: 'CHANGE_USER', payload: newData};
 }
 
 export function changeReservation(reservation){

@@ -29,7 +29,7 @@ export const Comments = ({ comment }) => {
                             <div className='flex flex-col ml-4 gap-4 w-full'>
                                 <div className='flex gap-2 items-center text-sm justify-between'>
                                     <p className='text-blue bg-brown p-2'>{c.userName}</p>
-                                    <p className='text-brown-dark italic text-xs font-bold'>{c.date}</p>
+                                    <p className='text-brown-dark italic text-xs'>{c.date}</p>
                                 </div>
                                 <p className='p-2 border-b-1 border-gray text-blue text-sm'>{c.comment}</p>
                             </div>

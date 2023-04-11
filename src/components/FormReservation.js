@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { changeUser } from './../actions'
 
 export const FormReservation = ({userData, setUserData, error, setError}) => {
+
+    const dispatch = useDispatch()
 
     const user = useSelector(state => state.user);
 
     useEffect(()=>{
         setError(false)
-    }, [userData])
+    }, [user])
     
     return (
         <>
@@ -18,20 +22,20 @@ export const FormReservation = ({userData, setUserData, error, setError}) => {
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="name">
                             Name*
                         </label>
-                        <input className='p-2 focus:outline-0 w-full md:w-max' id='name' type="text" onChange={(e) => setUserData({...userData, name: e.target.value})} value={userData.name}></input>
+                        <input className='p-2 focus:outline-0 w-full md:w-max' id='name' type="text" onChange={(e) => dispatch(changeUser({name: e.target.value}))} value={user.name}></input>
                     </div>
                     <div className='relative border-1 border-gray p-2 m-2 w-full group md:w-max'>
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="phone">
                             Phone*
                         </label>
-                        <input className='p-2 focus:outline-0 w-full md:w-max' id='phone' type="number" onChange={(e) => setUserData({...userData, phone: e.target.value})}></input>
-                        <span className='z-10 absolute left-[-1px] w-max bg-black px-2 rounded text-xs text-brown hidden group-hover:block duration-200'>{userData.phone.length < 9 && 'Must have more than 8 digits, ' + (9 - userData.phone.length) + ' to go'}</span>
+                        <input className='p-2 focus:outline-0 w-full md:w-max' id='phone' type="number" onChange={(e) => dispatch(changeUser({phone: e.target.value}))} value={user.phone}></input>
+                        <span className='z-10 absolute left-[-1px] w-max bg-black px-2 rounded text-xs text-brown hidden group-hover:block duration-200'>{user.phone.length < 9 && 'Must have more than 8 digits, ' + (9 - user.phone.length) + ' to go'}</span>
                     </div>
                     <div className='relative border-1 border-gray p-2 m-2 w-full group md:w-max'>
                         <label className='absolute top-[-10px] left-[20px] px-2 bg-white0 text-xs text-gray' htmlFor="email">
                             Email*
                         </label>
-                        <input className='p-2 focus:outline-0 w-full md:w-max' id='email' readOnly type="text" onChange={(e) => setUserData({...userData, email: e.target.value})} value={userData.email}></input>
+                        <input className='p-2 focus:outline-0 w-full md:w-max' id='email' readOnly type="text" value={user.email}></input>
                         <span className='z-10 absolute left-[-1px] w-max bg-black px-2 rounded text-xs text-brown hidden group-hover:block duration-200'>You will receive the summary at this email</span>
                     </div>
                 </div>
