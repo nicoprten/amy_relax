@@ -21,12 +21,14 @@ export const CommentPost = () => {
     }, [user])
     
     async function handleComment(user, comment){
-        setComment('');
-        if(user != null){
-            await postComment(user, comment);
-            setError(false)
-        }else{
-            setError(true)
+        if(comment !== ''){
+            setComment('');
+            if(user != null){
+                await postComment(user, comment);
+                setError(false)
+            }else{
+                setError(true)
+            }
         }
     }
 
