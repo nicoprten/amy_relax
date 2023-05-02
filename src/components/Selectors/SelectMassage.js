@@ -33,7 +33,6 @@ export const SelectMassage = () => {
                 delay: 0,
                 smooth: "easeInOutQuart"
               });
-              console.log('hola')
         }
         return(() => {
             if(scrollToReserve) {

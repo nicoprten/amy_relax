@@ -54,19 +54,15 @@ export const MyReservations = () => {
     }
 
     async function handleCancelReservation(reservation){
-        console.log(reservation.id)
         let nameDay = reservation.day.split(' ')[0]
         let numMonth = reservation.day.split(' ')[1].split('/')[1]
         let numDay = reservation.day.split(' ')[1].split('/')[0]
         let schedules = await getHours(nameDay, numMonth, numDay)
-        console.log(schedules)
-        console.log(reservation.duration)
-        console.log(reservation.hour)
+
         if(+reservation.duration > 30){
             const dateNextTurn = new Date(`2000-01-01T${reservation.hour}:00`)
             dateNextTurn.setMinutes(dateNextTurn.getMinutes() + 30)
             const hourNextTurn = dateNextTurn.toString().split(' ')[4].slice(0, 5)
-            console.log(hourNextTurn)
             schedules.push(reservation.hour, hourNextTurn)
         }else{
             schedules.push(reservation.hour)

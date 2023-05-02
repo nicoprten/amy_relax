@@ -21,7 +21,6 @@ export const CommentPost = () => {
     }, [user])
     
     async function handleComment(user, comment){
-        console.log(user)
         setComment('');
         if(user != null){
             await postComment(user, comment);
