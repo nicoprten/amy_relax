@@ -20,12 +20,13 @@ export const FinalReservation = () => {
 
     const [error, setError] = useState(false)
     
-    async function handleFinalReservation(email, phone, name){
+    async function handleFinalReservation(email, phone, name, address){
         if(email !== '' && phone.toString().length > 8 && name !== ''){
             setError(false)
+            console.log(address)
             let finalReservation = {
                 ...JSON.parse(localStorage.getItem('reservation')),
-                client: {email, phone, name} 
+                client: {email, phone, name, address}
             }
             postReservation(finalReservation)
 
@@ -63,7 +64,7 @@ export const FinalReservation = () => {
                 <p className='bg-brown text-brown-dark p-2 mx-4 sm:mx-0 rounded-xl w-max text-xs mt-2'>Check if you have received the email in your spam folder</p>
                 <div className='flex flex-wrap flex-wrap-reverse gap-2 my-4 mx-4 sm:mx-0'>
                     <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200' onClick={() => handleCancel()}>Cancel</button>
-                    <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleFinalReservation(user.email, user.phone, user.name)}>Confirm</button>
+                    <button className='sm:w-1/4 w-full text-black border-1 border-black bg-transparent p-2 hover:bg-black hover:text-white0 duration-200'  onClick={() => handleFinalReservation(user.email, user.phone, user.name, user.address)}>Confirm</button>
                 </div>
             </>
         :

@@ -12,7 +12,7 @@ export function logIn(){
             const token = credential.accessToken;
             const userGoogle = r.user;
             let userCreated = convertDate(userGoogle.metadata.createdAt);
-            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated, id: userGoogle.uid, phone: ''};
+            let user = {email: userGoogle.email, image: userGoogle.photoURL, name: userGoogle.displayName, creado: userCreated, id: userGoogle.uid, phone: '', address: ''};
             localStorage.setItem('user', JSON.stringify(user));
             dispatch({type:'LOG_IN', payload: user});
         }).catch((error) => {

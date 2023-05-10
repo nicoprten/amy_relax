@@ -25,7 +25,7 @@ export const MyReservations = () => {
         })()
         return(() => setReservations('default'))
     }, [showSelect])
-
+    console.log(reservations)
     // To check if there are 2 days left for the reservation and to be able to cancel it
     function compareDate(date){
         let parts = date.split('/')
@@ -87,7 +87,7 @@ export const MyReservations = () => {
                                 <>
                                     <div className='flex flex-wrap my-4 flex-col items-center sm:flex-row'>
                                         {reservations.map((r, i) =>
-                                            <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] h-[318px] rounded overflow-hidden' key={i}>
+                                            <div className='flex flex-col relative bg-white0 border-1 border-gray p-2 m-2 min-w-[200px] max-w-[200px] h-[330px] rounded overflow-hidden' key={i}>
                                                 <div className='border-b-1 border-gray p-2'>
                                                     <p className='text-xs text-brown-dark'>CLIENT</p>
                                                     <p className=''>{r.client.name}</p>
@@ -95,6 +95,7 @@ export const MyReservations = () => {
                                                 <div className='border-b-1 border-gray p-2'>
                                                     <p className='text-xs text-brown-dark'>DATE</p>
                                                     <p className=''>{r.day} - {r.hour}</p>
+                                                    <p>{r.client.address}</p>
                                                 </div>
                                                 <div className='p-2'>
                                                     <p className='text-xs text-brown-dark'>DETAILS</p>
