@@ -12,7 +12,7 @@ export const NavBar = () => {
   
   return (
     <div className='fixed z-50 w-full top-0 h-[4em] flex justify-between bg-brown py-8 px-14 items-center shadow-lg text-brown-dark text-sm'>
-        <Link to='/' className='p-2'><img className='w-full h-[50px] object-fit' src='./img/lotus-flower-brown-dark.png' alt='Lotus flower icon'/></Link>
+        <Link to='/' className='p-2'><img className='w-[50px] h-[50px] object-fit' src='./img/lotus-flower-brown-dark.png' alt='Lotus flower icon'/></Link>
         {/* <ul className='hidden flex gap-10 list-none sm:inline-flex'>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={() => s}>ABOUT ME</button></li>
             <li><button className='border-b-1 border-brown hover:border-brown-dark duration-200' onClick={() => s}>MASSAGES</button></li>

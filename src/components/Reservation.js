@@ -24,7 +24,7 @@ export const Reservation = () => {
     }
 
   return (
-    <div className='flex flex-col bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-brown-reservation.jpg)'}}>
+    <div className='flex flex-col bg-violet-light bg-cover bg-no-repeat' style={{backgroundImage: 'url(./img/bg-brown-reservation.jpg)'}} id='reservation'>
         <div className='md:w-[60vw] w-full px-8 md:px-0 mx-auto'>
             <h2 className='text-blue sm:text-3xl text-xl text-center my-10 bg-brown p-2 rounded'>BOOK YOUR NEXT MASSAGE</h2>
             <ul className='flex w-full justify-center my-4 text-blue text-sm sm:text-base'>

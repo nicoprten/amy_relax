@@ -25,7 +25,7 @@ export const MyReservations = () => {
         })()
         return(() => setReservations('default'))
     }, [showSelect])
-    console.log(reservations)
+
     // To check if there are 2 days left for the reservation and to be able to cancel it
     function compareDate(date){
         let parts = date.split('/')

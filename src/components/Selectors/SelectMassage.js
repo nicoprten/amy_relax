@@ -51,7 +51,7 @@ export const SelectMassage = () => {
     <>
         {reservation.massage === 'default' &&
             <>
-                <p className='w-max mx-auto p-1 border-b-blue border-b-1 text-blue text-xs font-thin' id='reservation'>Select the type of massage</p>
+                <p className='w-max mx-auto p-1 border-b-blue border-b-1 text-blue text-xs font-thin'>Select the type of massage</p>
                 <div className='flex flex-wrap justify-center gap-4 my-8 w-[60vw] mx-auto'>
                     { massages.length > 0 ?
                         massages.map((m, i) => 
