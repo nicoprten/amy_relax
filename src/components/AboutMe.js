@@ -18,7 +18,7 @@ export const AboutMe = () => {
   return (
     <div className='w-[60vw] mx-auto pt-28 pb-[4em] flex flex-col justify-between lg:flex-row' id='sobre-mi'>
         <div className='flex flex-col w-full rounded lg:w-3/4 lg:pr-10 xl:pr-20 w-full'>
-          <p className='text-sm my-2 bg-brown-dark sm:w-max p-2 rounded-t text-white'>MASSAGIST | HOLISTIC THERAPIST | SPEECH THERAPIST</p>
+          <p className='text-sm my-2 bg-brown-dark sm:w-max p-2 rounded-t text-white'>MASSAGIST | HOLISTIC THERAPIST | EDUCATIONAL PSYCHOLOGIST</p>
           <h2 className='lg:text-5xl sm:text-3xl text-xl text-brown-dark font-extrabold leading-relaxed tracking-wide'>María Amalia Alvarez</h2>
           <p className='text-sm sm:text-base text-blue'>Specialist in different techniques of body massage and energetic therapies with a holistic vision in each treatment. I look for the patient to reach a state of complete relaxation and harmony always taking into account their needs.</p>
           <button className='flex gap-4 items-center mx-auto sm:mx-0 text-center sm:text-left sm:w-max mt-4 py-2 px-4 bg-black text-white0 border-2 border-black hover:text-black hover:shadow-xl hover:bg-gray0 duration-200' onClick={() => handleScroll()}>

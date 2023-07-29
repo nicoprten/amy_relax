@@ -26,7 +26,7 @@ export const Information = () =>{
     return (
         <div className='bg-brown rounded-3xl'>
         {massages.length > 0 ?
-                <div className='w-[80vw] mx-auto py-10 flex flex-wrap justify-start gap-2'>
+                <div className='w-[80vw] mx-auto py-10 flex flex-wrap justify-center gap-2'>
                     {massages.map((m, i) => 
                         <div className='relative bg-white0 w-[300px] min-h-[140px] h-max rounded-l-xl border-r-[5px] border-brown-dark my-4' key={i}>
                             {/* <img className='rounded-tl-xl w-full h-[150px] object-cover' src={m.image} alt={m.type} /> */}
